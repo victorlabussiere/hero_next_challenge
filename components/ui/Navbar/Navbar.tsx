@@ -1,11 +1,12 @@
 import Image from "next/image";
-import { useState } from "react";
-
-import { NavWrapper, ActionWrapper, ListWrapper, ResponsiveMenu, ModalWrapper } from "./navbar.styles";
-import { PrimaryButton, SecundaryButton, TertiaryButton } from '../Buttons/Buttons'
-import { LangSelector } from "./LangSelector/LangSelector";
-
 import { arrSelectProps } from '../Types'
+
+import { ModalSolucoes } from "./modalSolucoes/ModalSolucoes";
+import { PrimaryButton, SecundaryButton, TertiaryButton } from '../Buttons/Buttons'
+import { IdiomaSet } from "./idiomaSet/IdiomaSet";
+
+import { NavWrapper, ActionWrapper, ListWrapper, ResponsiveMenu } from "./navbar.styles";
+import { useState } from "react";
 
 const ArrIdiomas: arrSelectProps = [
     { idioma: 'PT', imgAlt: 'BRASIL', imgPath: 'brFlag' },
@@ -15,72 +16,20 @@ const ArrIdiomas: arrSelectProps = [
 
 
 const Navbar: React.FC = function () {
-
-    const [state, setState] = useState(false)
-
-    const showMenu = function () {
-        const mobileMenu = document.getElementById('responsiveMenu')
-        mobileMenu?.classList.toggle('hidden')
-    }
+    const [responsiveMenuDisplay, setResponsiveMenuDisplay] = useState(false)
 
     return (
         <>
-            {/* default menu */}
+            {/* Nav */}
             <NavWrapper>
+
                 <Image className="logo-ensinio" src='/image/logo/ensinio-logo.png' width={158.71} height={40} alt='Ensinio logo'></Image>
 
                 <ListWrapper>
                     <li>
-                        <hgroup
-                            onMouseEnter={() => setState(true)}
-                            onClick={() => setState(!state)}
-                        >
-                            <p>Soluções</p>
-                            <i className="material-symbols-outlined">arrow_drop_down</i>
-                        </hgroup>
-
-                        <ModalWrapper
-                            className={state ? '' : "hidden"}
-                            id="modalSolucoes"
-                            onMouseLeave={() => setTimeout(() => setState(!state), 300)}
-                        >
-                            <h4>Soluções principais</h4>
-                            <ul>
-                                <li>
-                                    <Image src='/image/cards-icons/ead.png' width={40} height={40} alt='Ensino a Distância' />
-                                    <aside>
-                                        <h4>Crie uma Escola Online</h4>
-                                        <p>Lorem ipsum dolor sit amet</p>
-                                    </aside>
-                                </li>
-
-                                <li>
-                                    <Image src='/image/cards-icons/icon-social.png' width={40} height={40} alt='Ensino a Distância' />
-                                    <aside>
-                                        <h4>Comunidade e rede social</h4>
-                                        <p>Lorem ipsum dolor sit amet</p>
-                                    </aside>
-                                </li>
-
-                                <li>
-                                    <Image src='/image/cards-icons/gamification.png' width={40} height={40} alt='Ensino a Distância' />
-                                    <aside>
-                                        <h4>Gamificação</h4>
-                                        <p>Lorem ipsum dolor sit amet</p>
-                                    </aside>
-                                </li>
-
-                                <li>
-                                    <Image src='/image/cards-icons/icon-app.png' width={40} height={40} alt='Ensino a Distância' />
-                                    <aside>
-                                        <h4>Aplicativo mobile</h4>
-                                        <p>Lorem ipsum dolor sit amet</p>
-                                    </aside>
-                                </li>
-                            </ul>
-                        </ModalWrapper>
-
+                        <ModalSolucoes />
                     </li>
+
                     <li>Preços</li>
                     <li>Academy</li>
                     <li>Blog</li>
@@ -93,12 +42,12 @@ const Navbar: React.FC = function () {
 
                     <TertiaryButton text='Entrar' icon='material-symbols-outlined' iconText="account_circle" />
                     <SecundaryButton text='Começar agora' />
-                    <LangSelector data={ArrIdiomas} />
+                    <IdiomaSet data={ArrIdiomas} />
 
                 </ActionWrapper>
             </NavWrapper >
 
-            {/* responsive menu */}
+            {/* Responsive Nav => max-width 1220px */}
             < NavWrapper className="responsiveNav" >
                 <Image
                     className="logo-ensinio"
@@ -108,7 +57,7 @@ const Navbar: React.FC = function () {
                     alt='Ensinio logo'>
                 </Image>
 
-                <div onClick={showMenu}>
+                <div onClick={() => setResponsiveMenuDisplay(true)}>
                     <TertiaryButton
                         icon='material-symbols-outlined'
                         iconText="menu"
@@ -116,26 +65,37 @@ const Navbar: React.FC = function () {
                     />
                 </div>
 
-                <ResponsiveMenu className="hidden" id='responsiveMenu'>
+                <ResponsiveMenu
+                    className={!responsiveMenuDisplay ? 'hidden' : ''}
+                    id='responsiveMenu'
+                >
                     <header>
+
                         <nav>
                             <TertiaryButton icon='material-symbols-outlined' text={'Entrar'} iconText="account_circle" />
-                            <LangSelector data={ArrIdiomas} />
+                            <IdiomaSet data={ArrIdiomas} />
                         </nav>
 
                         <span className="verticalRow"></span>
 
-                        <div onClick={showMenu}>
+                        <i
+                            className="iconClose"
+                            onClick={() => setResponsiveMenuDisplay(false)}>
                             <TertiaryButton
                                 text=''
                                 icon='material-symbols-outlined'
                                 iconText={'close'}
                             />
-                        </div>
+                        </i>
+
                     </header>
 
-                    <ul>
-                        <li>Soluções</li>
+                    <ul className="responsiveListItems">
+
+                        <li id='responsiveSolInteraction'>
+                            <ModalSolucoes />
+                        </li>
+
                         <li>Preços</li>
                         <li>Carreiras</li>
                         <li>Contato</li>

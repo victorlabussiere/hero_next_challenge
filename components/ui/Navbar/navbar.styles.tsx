@@ -2,6 +2,14 @@ import styled from 'styled-components'
 import { animationHorizontal, animationVertical, fontStyle, navElementsHover, responsiveHiddenDisplay } from '../../ui/Utils.style'
 
 export const NavWrapper = styled.nav`
+    .modalContainer {
+        position: absolute;
+        width: 100%;
+        left: 20%;
+        top: 120%;
+        background-color: rgba(0, 0, 0, 0.9);
+    }
+
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -101,76 +109,6 @@ export const ListWrapper = styled.ul`
         transition: all .2s ease-in-out;
     }
 `
-
-export const ModalWrapper = styled.div`
-            
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-
-    top: 180%;
-    left: 0;
-    gap: 2.5rem;
-    border-radius: 8px;
-    min-width: 55vw;
-    max-width: 80vw;
-
-
-    background-color: #fff;
-    padding: 3rem 2.75rem;
-    color: #5F41D9;
-    font-weight: 600;
-
-
-    ul {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 2rem;
-        color: #000;
-        width: 100%;
-        h4 {
-            font-weight: 600;
-        }
-        li {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            flex-basis: 30%;
-            padding: 1rem;
-            border-radius: 9px;
-            border: 1px transparent solid;
-
-            animation: ${animationHorizontal(1, -16)} ease-in-out .6s;
-            transition: all .6s ease-in-out;
-            &:hover{
-                border: 1px solid #5F41D9;
-            }
-
-            h4 {
-                font-weight: 600;
-            }
-
-            p {
-                font-weight: 400;
-            }
-                                            
-            aside {
-                width: max-content;
-                display: flex;
-                flex-direction: column;
-                animation: ${animationHorizontal(1, 24)} .6s ease-in-out;
-            }
-        }
-    }
-
-    &.hidden{
-        display: none;
-        visibility: hidden;
-        top: -200%
-    }
-
-`
-
 export const ActionWrapper = styled.div`
     display: flex;
     align-items: center;
@@ -210,18 +148,7 @@ export const ResponsiveMenu = styled.div`
             justify-content: space-between;
             display: flex;
             align-items:  center;
-
-            div {
-                display: flex;
-                justify-content: flex-end;
-                justify-items: flex-end;                
-                ul {
-                    width: 200px;
-                    li {
-                        padding: 1rem;
-                    }
-                }
-            }        
+            
         }
         
         span {
@@ -230,26 +157,47 @@ export const ResponsiveMenu = styled.div`
             background-color: #99f3f5;
             opacity: calc(.9);
         }
+
+        .iconClose {
+            z-index: 9;           
+        }
     }
 
-    ul {
+    .responsiveListItems {
         display: flex;
         flex-direction: column;
         list-style: none;   
         ${fontStyle}
         width: 100%;
+        opacity: 1;
         
+        :nth-child(1) {
+            position: relative;
+            display: flex;
+            align-items: center;                        
+            z-index: 9;
+        }
         li {
+            width: 100%;
+            display: flex;
             padding: 1.6rem 0;
             border-top: 1px solid rgba(153, 244, 245, 0.6);
             animation: ${animationHorizontal(1, -16)} .6s ease-in-out;
-
+            align-items: center;
+            justify-content: space-between;
+            
             ${navElementsHover}
-
+            
         }
     }
 
-    // hidden display
+
+    // button
+    & :last-child {
+        z-index: -1;
+    }
+
+    // hide display
     &.hidden {
         display: none;
         visibility: hidden;

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { animationVertical, fontStyle } from '../../Utils.style'
-export const LangSelectorWrapper = styled.div`
+
+export const IdiomaWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -9,7 +10,7 @@ export const LangSelectorWrapper = styled.div`
     position: relative;
 `
 
-export const LangOptsStyle = styled.ul`
+export const IdiomaUlWrapper = styled.ul`
         ${fontStyle}
     
         position: absolute;

@@ -2,10 +2,10 @@ import Image from "next/image"
 import { useState } from "react"
 
 import { TertiaryButton } from "../../Buttons/Buttons"
-import { LangOptsStyle, LangSelectorWrapper } from "./langSelection.style"
+import { IdiomaUlWrapper, IdiomaWrapper } from "./idiomaSet.style"
 import { arrSelectProps, selectPropsObj } from "../../Types"
 
-export const LangSelector = function ({ data }: { data: arrSelectProps }): JSX.Element {
+export const IdiomaSet = function ({ data }: { data: arrSelectProps }): JSX.Element {
 
     const [state, setState] = useState(false)
     const [selected, setSelected] = useState(data[0].idioma)
@@ -21,7 +21,7 @@ export const LangSelector = function ({ data }: { data: arrSelectProps }): JSX.E
     }
 
     return (
-        <LangSelectorWrapper
+        <IdiomaWrapper
             onMouseEnter={() => setState(true)}
             onClick={() => setState(!state)}
         >
@@ -34,7 +34,7 @@ export const LangSelector = function ({ data }: { data: arrSelectProps }): JSX.E
             />
             <TertiaryButton text={selected} icon='material-symbols-outlined' iconText='arrow_drop_down' />
 
-            <LangOptsStyle
+            <IdiomaUlWrapper
                 className={state ? 'optionsWrapper' : 'optionsWrapper hideOptions'}
                 id='optionsWrapper'
                 onMouseLeave={() => setState(false)}
@@ -63,8 +63,8 @@ export const LangSelector = function ({ data }: { data: arrSelectProps }): JSX.E
                     </li >
                 )
                 }
-            </LangOptsStyle >
+            </IdiomaUlWrapper >
 
-        </LangSelectorWrapper>
+        </IdiomaWrapper>
     )
 }

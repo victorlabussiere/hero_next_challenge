@@ -13,7 +13,6 @@ export const buttonDisplay = `
     display: flex;
     align-items: center;
     vertical-align: middle;    
-    background-color:unset;
     gap: .5rem;    
 `
 export const navElementsHover = `
