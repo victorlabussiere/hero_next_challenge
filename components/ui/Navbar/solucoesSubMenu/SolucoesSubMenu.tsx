@@ -1,8 +1,8 @@
 import Image from "next/image"
 
-import { ModalWrapper } from "./modal.styles"
+import { ModalWrapper } from "./solucoes.styles"
 
-export function ModalSolucoes(): JSX.Element {
+export function SolucoesSubMenu(): JSX.Element {
 
     return (
         <ModalWrapper

@@ -7,9 +7,9 @@ import { TertiaryButton } from "../../Buttons/Buttons"
 import { arrSelectProps, selectPropsObj } from "../../Types"
 
 // styled-components
-import { IdiomaUlWrapper as SelecaoIdiomasWrapper, IdiomaWrapper } from "./idiomaSet.style"
+import { SelecaoIdiomasWrapper, IdiomaWrapper } from "./idiomas.styles"
 
-export const IdiomaSet = function ({ data }: { data: arrSelectProps }): JSX.Element {
+export const IdiomaSubMenu = function ({ data }: { data: arrSelectProps }): JSX.Element {
 
     const [state, setState] = useState(false)
     const [selected, setSelected] = useState(data[0].idioma)

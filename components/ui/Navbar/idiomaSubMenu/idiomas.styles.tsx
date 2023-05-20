@@ -10,7 +10,7 @@ export const IdiomaWrapper = styled.div`
     position: relative;
 `
 
-export const IdiomaUlWrapper = styled.ul`
+export const SelecaoIdiomasWrapper = styled.ul`
         ${fontStyle}
     
         position: absolute;

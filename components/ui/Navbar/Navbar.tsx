@@ -4,8 +4,8 @@ import { useState } from "react";
 
 // components | types
 import { PrimaryButton, SecundaryButton, TertiaryButton } from '../Buttons/Buttons'
-import { ModalSolucoes } from "./modalSolucoes/ModalSolucoes";
-import { IdiomaSet } from "./idiomaSet/IdiomaSet";
+import { SolucoesSubMenu } from "./solucoesSubMenu/SolucoesSubMenu";
+import { IdiomaSubMenu } from "./idiomaSubMenu/idiomaSubMenu";
 import { arrSelectProps } from '../Types'
 
 // styled-components
@@ -45,12 +45,12 @@ const Navbar: React.FC = function () {
 
             <LinksWrapper>
                 <li>
-                    <div className="stateManager" onClick={toggleModal}>
+                    <div className="stateManager" onMouseEnter={toggleModal}>
                         <p>Soluções</p>
                         <i className="material-symbols-outlined">arrow_drop_down</i>
                     </div>
                     <div className="modalState hidden" id="modalSolucoes" onMouseLeave={toggleModal}>
-                        <ModalSolucoes />
+                        <SolucoesSubMenu />
                     </div>
                 </li>
 
@@ -66,7 +66,7 @@ const Navbar: React.FC = function () {
 
                 <TertiaryButton text='Entrar' icon='material-symbols-outlined' iconText="account_circle" />
                 <SecundaryButton text='Começar agora' />
-                <IdiomaSet data={ArrIdiomas} />
+                <IdiomaSubMenu data={ArrIdiomas} />
 
             </AcoesWrapper>
 
@@ -88,7 +88,7 @@ const Navbar: React.FC = function () {
 
                     <nav>
                         <TertiaryButton icon='material-symbols-outlined' text={'Entrar'} iconText="account_circle" />
-                        <IdiomaSet data={ArrIdiomas} />
+                        <IdiomaSubMenu data={ArrIdiomas} />
                     </nav>
 
                     <span className="respVerticalRow"></span>
@@ -113,7 +113,7 @@ const Navbar: React.FC = function () {
                             <i className="material-symbols-outlined">arrow_drop_down</i>
                         </div>
                         <div className="modalState hidden" id="respModalSolucoes" onMouseLeave={toggleRespModal}>
-                            <ModalSolucoes />
+                            <SolucoesSubMenu />
                         </div>
                     </li>
 

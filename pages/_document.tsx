@@ -22,6 +22,10 @@ export default class MyDocument extends Document {
           <>
             {initialProps.styles}
             {sheet.getStyleElement()}
+            <link key="font-1" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />,
+            <link key="font-2" rel="preconnect" href="https://fonts.googleapis.com" />,
+            <link key="font-3" rel="preconnect" href="https://fonts.gstatic.com" />,
+            <link key="font-4" href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
           </>
         ),
       }
