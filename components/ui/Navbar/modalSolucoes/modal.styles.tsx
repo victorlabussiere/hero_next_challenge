@@ -10,23 +10,18 @@ export const ModalHeaderWrapper = styled.hgroup`
 
 
 export const ModalWrapper = styled.div`
-    &.hidden {
-        display: none;
-        visibility: hidden;
-    }
-
     position: absolute;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
     opacity: 1;
-    z-index: 9;
     min-width: 800px;
     max-width: 1200px;
     max-height: min-content;
 
     top: 160%;
     left: 0;
+    z-index: 99;
     gap: 2.5rem;
     border-radius: 8px;
 
@@ -43,10 +38,8 @@ export const ModalWrapper = styled.div`
         justify-content: space-around;
         flex-wrap: wrap;
         flex: 1 1 100%;
-
         color: #000;
-        z-index: 9;
-        
+       
         .card {
 
             display: flex;
@@ -87,22 +80,21 @@ export const ModalWrapper = styled.div`
     @media(max-width: 1220px) {
         position: absolute;
         top: 90%;
+        z-index: 9;
         
         flex-direction: column;
         justify-content: space-evenly;
         
         height: fit-content;
         min-width: unset;
+        width: 100%;
         padding: 1rem;
 
         animation: ${animationVertical(1, -40)} ease-in-out .3s;
-        max-width: 400px;
+        
         
         .modalContent{
             color: #000;
-            min-width: fit-content;
-            flex-direction: column;
-            align-items: flex-start;
             gap: .5rem;
                         
             .card {
@@ -112,8 +104,19 @@ export const ModalWrapper = styled.div`
                 flex: unset;
                 flex-basis: unset;
                 align-items: flex-start;
+                width: 40%;
                 &:hover {
                     border: unset;
+                }
+            }
+            @media (max-width: 720px) {
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+                .card {
+                    width: 100%;
+                    align-items: center;
                 }
             }
         }

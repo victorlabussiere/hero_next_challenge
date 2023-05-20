@@ -1,9 +1,13 @@
+// react
 import Image from "next/image"
 import { useState } from "react"
 
+// components | types
 import { TertiaryButton } from "../../Buttons/Buttons"
-import { IdiomaUlWrapper, IdiomaWrapper } from "./idiomaSet.style"
 import { arrSelectProps, selectPropsObj } from "../../Types"
+
+// styled-components
+import { IdiomaUlWrapper as SelecaoIdiomasWrapper, IdiomaWrapper } from "./idiomaSet.style"
 
 export const IdiomaSet = function ({ data }: { data: arrSelectProps }): JSX.Element {
 
@@ -34,7 +38,7 @@ export const IdiomaSet = function ({ data }: { data: arrSelectProps }): JSX.Elem
             />
             <TertiaryButton text={selected} icon='material-symbols-outlined' iconText='arrow_drop_down' />
 
-            <IdiomaUlWrapper
+            <SelecaoIdiomasWrapper
                 className={state ? 'optionsWrapper' : 'optionsWrapper hideOptions'}
                 id='optionsWrapper'
                 onMouseLeave={() => setState(false)}
@@ -61,10 +65,8 @@ export const IdiomaSet = function ({ data }: { data: arrSelectProps }): JSX.Elem
                         }> done </i>
 
                     </li >
-                )
-                }
-            </IdiomaUlWrapper >
-
+                )}
+            </SelecaoIdiomasWrapper >
         </IdiomaWrapper>
     )
 }

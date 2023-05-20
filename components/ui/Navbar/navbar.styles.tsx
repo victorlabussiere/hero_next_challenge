@@ -1,15 +1,7 @@
 import styled from 'styled-components'
-import { animationHorizontal, animationVertical, fontStyle, navElementsHover, responsiveHiddenDisplay } from '../../ui/Utils.style'
+import { animationHorizontal, fontStyle, navElementsHover, responsiveHiddenDisplay } from '../../ui/Utils.style'
 
 export const NavWrapper = styled.nav`
-    .modalContainer {
-        position: absolute;
-        width: 100%;
-        left: 20%;
-        top: 120%;
-        background-color: rgba(0, 0, 0, 0.9);
-    }
-
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -36,6 +28,10 @@ export const NavWrapper = styled.nav`
         min-height: 40%;
         background-color: #fff;
         opacity: calc(.9);
+
+        @media (max-width: 1220px) {
+            ${responsiveHiddenDisplay}
+        }
     }
 
     .burgerMenu {
@@ -48,16 +44,16 @@ export const NavWrapper = styled.nav`
         font-size: 1.5rem;
 
         ${navElementsHover}
-        animation: ${animationHorizontal(.6, 16)} ease-in-out 1s
-    }
+        animation: ${animationHorizontal(.6, 16)} ease-in-out 1s;
 
-    &.responsiveNav {
-        ${responsiveHiddenDisplay}
+        @media (min-width: 1220px) {
+            ${responsiveHiddenDisplay}
+        }
     }
 
     // Responsive sizes:
     @media(max-width: 1220px) {
-        ${responsiveHiddenDisplay}
+        justify-content: space-between;
         
         &.responsiveNav{
             display: flex;    
@@ -69,7 +65,7 @@ export const NavWrapper = styled.nav`
     }
     
 `
-export const ListWrapper = styled.ul`
+export const LinksWrapper = styled.ul`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -77,6 +73,16 @@ export const ListWrapper = styled.ul`
     ${fontStyle}
     gap: 2vw;
     color: #fff;
+
+    .stateManager {
+        display: flex;
+        align-items: center;
+    }
+
+    .modalState.hidden {
+        display: none;
+        visibility: none;
+    }
    
     li {
         display: flex;
@@ -108,14 +114,25 @@ export const ListWrapper = styled.ul`
 
         transition: all .2s ease-in-out;
     }
+
+    @media(max-width: 1220px) {
+        ${responsiveHiddenDisplay}
+    }
+
+
 `
-export const ActionWrapper = styled.div`
+export const AcoesWrapper = styled.div`
     display: flex;
     align-items: center;
     height: 100%;
     gap: 2vw;
+
+    @media (max-width: 1220px) {
+        ${responsiveHiddenDisplay}
+    }
+
 `
-export const ResponsiveMenu = styled.div`
+export const MenuResponsiveWrapper = styled.div`
     background-color: #5f41d9;
     position: absolute;
     top: 0;
@@ -132,7 +149,7 @@ export const ResponsiveMenu = styled.div`
     padding: .2rem 2rem;
     gap: 2rem;
 
-    animation: ${animationVertical(1, -40)} ease-in-out .6s;
+    animation: ${animationHorizontal(1, -40)} ease-in-out .6s;
 
     header {
         display: flex;
@@ -148,18 +165,18 @@ export const ResponsiveMenu = styled.div`
             justify-content: space-between;
             display: flex;
             align-items:  center;
+            z-index: 9;
             
         }
         
-        span {
+        & .respVerticalRow {
             min-width: 1px;
             height: 40%;
-            background-color: #99f3f5;
-            opacity: calc(.9);
+            background-color: #99f3f5;               
         }
 
         .iconClose {
-            z-index: 9;           
+            z-index: 6;           
         }
     }
 
@@ -171,12 +188,18 @@ export const ResponsiveMenu = styled.div`
         width: 100%;
         opacity: 1;
         
-        :nth-child(1) {
-            position: relative;
+        .stateManager {
             display: flex;
-            align-items: center;                        
-            z-index: 9;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            z-index: 7;
+
+            i {
+                color: #99f3f5;
+            }
         }
+
         li {
             width: 100%;
             display: flex;
@@ -189,9 +212,14 @@ export const ResponsiveMenu = styled.div`
             ${navElementsHover}
             
         }
+
+        .modalState {
+            &.hidden{
+                display: none;
+                visibility: hidden;
+            }
+        }
     }
-
-
     // button
     & :last-child {
         z-index: -1;
@@ -201,5 +229,9 @@ export const ResponsiveMenu = styled.div`
     &.hidden {
         display: none;
         visibility: hidden;
+    }
+
+    @media (min-width: 1220px) {
+        ${responsiveHiddenDisplay}
     }
 `

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { fontStyle, buttonDisplay, navElementsHover, animationHorizontal } from '../Utils.style'
 
-export const PrimaryButtonStyle = styled.div`
+export const PriButtonWrapper = styled.div`
     ${fontStyle}
     ${buttonDisplay}
      font-weight: 700;
@@ -14,7 +14,7 @@ export const PrimaryButtonStyle = styled.div`
     ${navElementsHover}
     animation: ${animationHorizontal(.6, 16)} ease-in-out .6s;    
 `
-export const SecundaryButtonStyle = styled.div`
+export const SecButtonWrapper = styled.div`
     ${fontStyle}
     ${buttonDisplay}
     transition: all .2s ease-in-out;
@@ -27,7 +27,7 @@ export const SecundaryButtonStyle = styled.div`
     animation: ${animationHorizontal(.6, 16)} ease-in-out .6s;
 
 `
-export const TertiaryButtonStyle = styled.div`
+export const TerButtonWrapper = styled.div`
     ${fontStyle}
     ${buttonDisplay}
     color: #fff;
@@ -39,20 +39,4 @@ export const TertiaryButtonStyle = styled.div`
     
     ${navElementsHover}
     animation: ${animationHorizontal(.6, 16)} ease-in-out .6s;    
-`
-export const SelectWrapper = styled.div`
-    position: relative;
-    cursor: pointer;
-
-    display: flex;
-    align-items: center;
-    width: fit-content;
-    gap: .5em;
-    ${fontStyle}
-
-    i{
-        color: #99f3f5;
-        cursor: pointer;
-        ${navElementsHover}
-    }    
 `
