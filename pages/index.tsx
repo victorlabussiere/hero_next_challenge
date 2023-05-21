@@ -3,17 +3,19 @@ import Image from "next/image"
 
 import { useEffect, useState } from "react"
 import { CardList } from "../components/ui/Cards/CardsList"
-import { SectionContainer, SectionWrapper, SectionFooterWrapper } from "./styles/index.styles"
+import { SectionContainer, SectionWrapper, SectionFooterWrapper } from "../styles/styles"
 
 export default function Home() {
 
   const [cardList, setCardList] = useState([])
 
   useEffect(() => {
+
     fetch('/api/cardsdata')
       .then(res => res.json())
       .then(data => setCardList(data))
       .catch(err => console.log('error', err))
+
   }, [])
 
   return (

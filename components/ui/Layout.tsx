@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import Navbar from './Navbar/Navbar'
-import GlobalStyle from '../../pages/styles/globals'
+import GlobalStyle from '../../styles/globals'
 import { selectPropsObj } from './types'
 
 interface LayoutProps {

@@ -1,9 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { CardMain } from '../../components/ui/Cards/types'
+import { CardData } from '../../components/ui/Cards/types'
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<CardMain[]>) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse<CardData[]>) {
 
-  const data: Promise<CardMain[]> = fetch('http://localhost:3001/cards')
+  const data: Promise<CardData[]> = fetch('http://localhost:3001/cards')
     .then(res => res.json())
     .catch(err => (err.message).json())
 

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { fontStyle } from "../../components/ui/Utils.style";
+import { fontStyle } from "../components/ui/Utils.style";
 
 export const SectionWrapper = styled.section`
     background-color:#fff;
@@ -9,7 +9,7 @@ export const SectionWrapper = styled.section`
     flex-direction: column;
     gap: 4.25rem;
     width: 100%;
-    padding: 5rem;
+    padding: 5rem 10vw;
     @media (max-width: 1220px) {
         padding: 5rem 1.5rem;
         /* gap: 1rem; */
@@ -17,7 +17,7 @@ export const SectionWrapper = styled.section`
 `
 
 export const SectionContainer = styled.div`
-padding: 0;
+padding: 0 5vw;
 width: 100%;
 display: flex;
 flex-direction: column;

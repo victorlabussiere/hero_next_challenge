@@ -4,7 +4,7 @@ import { animationHorizontal, fontStyle, navElementsHover, responsiveHiddenDispl
 export const NavWrapper = styled.nav`
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
 
     position: fixed;
     top: 0;
@@ -13,7 +13,7 @@ export const NavWrapper = styled.nav`
 
     width: 100vw;
     height: 88px;
-    padding: .5rem 5rem;
+    padding: .5rem 15vw;
 
     background: rgba(0, 0, 0, 0.03);
     backdrop-filter: blur(15px);
