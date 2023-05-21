@@ -5,7 +5,7 @@ import { useState } from "react";
 // components | types
 import { PrimaryButton, SecundaryButton, TertiaryButton } from '../Buttons/Buttons'
 import { SolucoesSubMenu } from "./solucoesSubMenu/SolucoesSubMenu";
-import { selectPropsObj } from '../Types'
+import { selectPropsObj } from '../types'
 import { IdiomaWrapper } from "./idiomaSubMenu/idiomas.styles";
 
 // utils

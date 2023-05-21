@@ -1,4 +1,4 @@
-import Document, { DocumentContext, DocumentInitialProps } from 'next/document'
+import Document, { DocumentContext, DocumentInitialProps } from 'next/document';
 import { ServerStyleSheet } from 'styled-components'
 
 export default class MyDocument extends Document {
@@ -18,6 +18,13 @@ export default class MyDocument extends Document {
       const initialProps = await Document.getInitialProps(ctx)
       return {
         ...initialProps,
+        head: (
+          [
+            <title key='1'>Challenge Ensinio</title>,
+            <meta key='2' name="description" content="Projeto desafio da Ensinio desenvolvido com Next.js e Typescript." />,
+            <meta key='3' name="viewport" content="width=device-width, initial-scale=1" />,
+          ]
+        ),
         styles: (
           <>
             {initialProps.styles}

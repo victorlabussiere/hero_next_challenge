@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { selectPropsObj } from '../../Types'
+import { selectPropsObj } from '../../types'
 import { SelecaoIdiomasWrapper } from './idiomas.styles'
 
 type IdiomaSubMenuType = {

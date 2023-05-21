@@ -1,0 +1,22 @@
+{
+    "cards": [
+        {
+            "imgPath": "icon-trilhas",
+            "imgAlt": "icon-trilhas",
+            "cardTitle": "Trilhas e Etapas",
+            "cardText": "Crie planos de estudos especificando aulas e/ou cursos e definindo a ordem que seus alunos devem estudar."
+        },
+        {
+            "imgPath": "icon-playlists",
+            "imgAlt": "icon-playlists",
+            "cardTitle": "Playlists",
+            "cardText": "Transforme uma coleção em uma playlist para poder ver vídeos e áudios em sequência offline."
+        },
+        {
+            "imgPath": "icon-folder",
+            "imgAlt": "icon-playlists",
+            "cardTitle": "Coleções",
+            "cardText": "Crie coleções, adicione conteúdos, reorganize ítens e deixe tudo do seu jeito para melhorar a experiência."
+        }
+    ]
+}

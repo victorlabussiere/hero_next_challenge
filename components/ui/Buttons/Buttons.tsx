@@ -1,5 +1,5 @@
 import { PriButtonWrapper, SecButtonWrapper, TerButtonWrapper } from './buttonsStyles'
-import { ButtonProps } from '../Types'
+import { ButtonProps } from '../types'
 
 export const PrimaryButton = function ({ text, icon, iconText }: ButtonProps): JSX.Element {
 
