@@ -1,72 +1,40 @@
-// react
-import Image from "next/image"
-import { useState } from "react"
+import Image from 'next/image'
+import { selectPropsObj } from '../../Types'
+import { SelecaoIdiomasWrapper } from './idiomas.styles'
 
-// components | types
-import { TertiaryButton } from "../../Buttons/Buttons"
-import { arrSelectProps, selectPropsObj } from "../../Types"
+type IdiomaSubMenuType = {
+    data: selectPropsObj[],
+    func: (dt: selectPropsObj) => void,
+    selected: string,
+}
 
-// styled-components
-import { SelecaoIdiomasWrapper, IdiomaWrapper } from "./idiomas.styles"
-
-export const IdiomaSubMenu = function ({ data }: { data: arrSelectProps }): JSX.Element {
-
-    const [state, setState] = useState(false)
-    const [selected, setSelected] = useState(data[0].idioma)
-    const [path, setPath] = useState(data[0].imgPath)
-    const [alt, setAlt] = useState(data[0].imgAlt)
-
-    const setLang = function (dt: selectPropsObj): void {
-        setState(false)
-        setAlt(dt.imgAlt)
-        setPath(dt.imgPath)
-        setSelected(dt.idioma);
-        return void (0)
-    }
+export const IdiomaSubMenu = function ({ data, func, selected }: IdiomaSubMenuType) {
 
     return (
-        <IdiomaWrapper
-            onMouseEnter={() => setState(true)}
-            onClick={() => setState(!state)}
-        >
-            <Image
-                alt={alt}
-                width={16}
-                height={16}
-                src={'/image/flags/' + path + '.png'}
-                className="responSiveMenuSettings"
-            />
-            <TertiaryButton text={selected} icon='material-symbols-outlined' iconText='arrow_drop_down' />
+        <SelecaoIdiomasWrapper>
+            {data.map((dt, index) =>
+                <li
+                    value={index + 1}
+                    key={index}
+                    onClick={() => func(dt)}
+                    className={selected === dt.idioma ? 'selectedItem' : ''}
+                >
+                    <Image
+                        alt={dt.imgAlt}
+                        width={16}
+                        height={16}
+                        src={'/image/flags/' + dt.imgPath + '.png'}
+                    />
 
-            <SelecaoIdiomasWrapper
-                className={state ? 'optionsWrapper' : 'optionsWrapper hideOptions'}
-                id='optionsWrapper'
-                onMouseLeave={() => setState(false)}
-            >
-                {data.map((dt, index) =>
-                    <li
-                        value={index + 1}
-                        key={index}
-                        onClick={() => setLang(dt)}
-                        className={selected === dt.idioma ? 'selectedItem' : ''}
-                    >
-                        <Image
-                            alt={dt.imgAlt}
-                            width={16}
-                            height={16}
-                            src={'/image/flags/' + dt.imgPath + '.png'}
-                        />
+                    <p>{dt.idioma}</p>
 
-                        <p>{dt.idioma}</p>
+                    <i className={selected === dt.idioma
+                        ? "material-symbols-outlined check"
+                        : 'hideCheck'
+                    }> done </i>
 
-                        <i className={selected === dt.idioma
-                            ? "material-symbols-outlined check"
-                            : 'hideCheck'
-                        }> done </i>
-
-                    </li >
-                )}
-            </SelecaoIdiomasWrapper >
-        </IdiomaWrapper>
+                </li >
+            )}
+        </SelecaoIdiomasWrapper>
     )
 }

@@ -6,70 +6,76 @@ export const IdiomaWrapper = styled.div`
     align-items: center;
     justify-content: flex-end;
     gap: .5rem;
-    
     position: relative;
+    
+    .stateManager {
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+    }
+
+    .idiomasContainer {
+        top: 200%;
+        left: 0;
+        position: absolute;
+    }
 `
 
-export const SelecaoIdiomasWrapper = styled.ul`
-        ${fontStyle}
+export const SelecaoIdiomasWrapper = styled.ul`        
+    ${fontStyle}
+    width: 138px;
+    color: #5F41D9;
+    background-color: #fff;
+    border-radius: .5rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    z-index: 9;
+    animation: ${animationVertical(1, -8)} .3s ease-in-out;
     
-        position: absolute;
-        right: 0;
-        top: 200%;
-        width: 138px;
+    .selectedItem {
+        background: linear-gradient(90deg, #5F41D9 -880.48%, rgba(95, 65, 217, 0) 100%);
+    }
 
-        background-color: #fff;
-        color: #5F41D9;
-        border-radius: .5rem;
-
+    &.hideOptions {
+        display: none;
+        visibility: hidden;
+    }
+        
+    li {
         display: flex;
-        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+        height: fit-content;
+        align-items: center;
         justify-content: flex-start;
-
-        z-index: 9;
-        animation: ${animationVertical(1, -8)} .3s ease-in-out;
-
-        .selectedItem {
-            background: linear-gradient(90deg, #5F41D9 -880.48%, rgba(95, 65, 217, 0) 100%);
+        width: 100%;
+            
+        i {
+            justify-self: end;
         }
 
-        &.hideOptions {
+        &:first-child {
+            border-radius: 8px 8px 0 0;
+        }
+        &:last-child {
+            border-radius: 0 0 8px 8px;
+        }
+        &:hover {
+            cursor: pointer;
+            background-color: #e9e9e9;
+        }
+
+        .check {
+            color: #5F41D9;
+            margin-left: auto;
+        }
+        .hideCheck {
             display: none;
             visibility: hidden;
         }
-        
-        li {
-            display: flex;
-            gap: 1rem;
-            padding: 1rem;
-            height: fit-content;
-            align-items: center;
-            justify-content: flex-start;
-            width: 100%;
-            
-            i {
-                justify-self: end;
-            }
-
-            &:first-child {
-                border-radius: 8px 8px 0 0;
-            }
-            &:last-child {
-                border-radius: 0 0 8px 8px;
-            }
-            &:hover {
-                cursor: pointer;
-                background-color: #e9e9e9;
-            }
-
-            .check {
-                color: #5F41D9;
-                margin-left: auto;
-            }
-            .hideCheck {
-                display: none;
-                visibility: hidden;
-            }
-        }
-    
+    }
+   
 `

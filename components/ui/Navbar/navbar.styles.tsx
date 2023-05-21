@@ -83,6 +83,12 @@ export const LinksWrapper = styled.ul`
         display: none;
         visibility: none;
     }
+
+    .modalState {
+        position: absolute;
+        top: 200%;
+        left: 0;
+    }
    
     li {
         display: flex;
@@ -233,5 +239,9 @@ export const MenuResponsiveWrapper = styled.div`
 
     @media (min-width: 1220px) {
         ${responsiveHiddenDisplay}
+
+        nav {
+            position: relative;
+        }
     }
 `

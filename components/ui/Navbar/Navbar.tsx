@@ -5,30 +5,39 @@ import { useState } from "react";
 // components | types
 import { PrimaryButton, SecundaryButton, TertiaryButton } from '../Buttons/Buttons'
 import { SolucoesSubMenu } from "./solucoesSubMenu/SolucoesSubMenu";
-import { IdiomaSubMenu } from "./idiomaSubMenu/idiomaSubMenu";
-import { arrSelectProps } from '../Types'
+// import { IdiomaSubMenu } from "./idiomaSubMenu/idiomaSubMenu";
+import { selectPropsObj } from '../Types'
+
+import { IdiomaWrapper } from "./idiomaSubMenu/idiomas.styles";
 
 // styled-components
 import { NavWrapper, AcoesWrapper, LinksWrapper, MenuResponsiveWrapper } from "./navbar.styles";
+import { IdiomaSubMenu } from "./idiomaSubMenu/IdiomaSubMenu";
 
-const ArrIdiomas: arrSelectProps = [
-    { idioma: 'PT', imgAlt: 'BRASIL', imgPath: 'brFlag' },
-    { idioma: 'EN', imgAlt: 'EUA', imgPath: 'usaFlag' },
-    { idioma: 'ES', imgAlt: 'SPAIN', imgPath: 'spainFlag' }
-]
+type navProps = {
+    idiomaData: selectPropsObj[]
+}
 
-const Navbar: React.FC = function () {
+const Navbar = function ({ idiomaData }: navProps): JSX.Element {
 
     const [responsiveMenuDisplay, setResponsiveMenuDisplay] = useState(false)
 
-    const toggleModal = function () {
-        const modal = document.getElementById('modalSolucoes')
+    const toggleSubMenu = function (elementClass: string) {
+        const modal = document.getElementById(elementClass)
         modal?.classList.toggle('hidden')
     }
 
-    const toggleRespModal = function () {
-        const modal = document.getElementById('respModalSolucoes')
-        modal?.classList.toggle('hidden')
+    // idiomas
+    const [selected, setSelected] = useState(idiomaData[0].idioma)
+    const [path, setPath] = useState(idiomaData[0].imgPath)
+    const [alt, setAlt] = useState(idiomaData[0].imgAlt)
+
+    const setLang = function (dt: selectPropsObj, callback: void) {
+        setAlt(dt.imgAlt)
+        setPath(dt.imgPath)
+        setSelected(dt.idioma);
+
+        return callback
     }
 
     return (
@@ -45,11 +54,19 @@ const Navbar: React.FC = function () {
 
             <LinksWrapper>
                 <li>
-                    <div className="stateManager" onMouseEnter={toggleModal}>
+                    <div
+                        className="stateManager"
+                        onMouseEnter={() => toggleSubMenu('modalSolucoes')}
+                        onClick={() => toggleSubMenu('modalSolucoes')}
+                    >
                         <p>Soluções</p>
                         <i className="material-symbols-outlined">arrow_drop_down</i>
                     </div>
-                    <div className="modalState hidden" id="modalSolucoes" onMouseLeave={toggleModal}>
+                    <div
+                        className="modalState hidden"
+                        id="modalSolucoes"
+                        onMouseLeave={() => toggleSubMenu('modalSolucoes')}
+                    >
                         <SolucoesSubMenu />
                     </div>
                 </li>
@@ -66,7 +83,39 @@ const Navbar: React.FC = function () {
 
                 <TertiaryButton text='Entrar' icon='material-symbols-outlined' iconText="account_circle" />
                 <SecundaryButton text='Começar agora' />
-                <IdiomaSubMenu data={ArrIdiomas} />
+
+                <IdiomaWrapper
+                >
+                    <div
+                        className='stateManager'
+                        onMouseEnter={() => toggleSubMenu('idiomaSelections')}
+                        onClick={() => toggleSubMenu('idiomaSelections')}
+                    >
+
+                        <Image
+                            alt={alt}
+                            width={16}
+                            height={16}
+                            src={'/image/flags/' + path + '.png'}
+                            className="responSiveMenuSettings"
+                        />
+                        <TertiaryButton text={selected} icon='material-symbols-outlined' iconText='arrow_drop_down' />
+                    </div>
+
+                    <div
+                        id='idiomaSelections'
+                        className="hidden idiomasContainer"
+                        onMouseLeave={() => toggleSubMenu('idiomaSelections')}
+                    >
+                        <IdiomaSubMenu
+                            data={idiomaData}
+                            func={setLang}
+                            selected={selected}
+                        />
+
+                    </div>
+
+                </IdiomaWrapper >
 
             </AcoesWrapper>
 
@@ -88,7 +137,35 @@ const Navbar: React.FC = function () {
 
                     <nav>
                         <TertiaryButton icon='material-symbols-outlined' text={'Entrar'} iconText="account_circle" />
-                        <IdiomaSubMenu data={ArrIdiomas} />
+                        <IdiomaWrapper
+                        >
+                            <div
+                                className='stateManager'
+                                onClick={() => toggleSubMenu('respIdiomaSelections')}
+                            >
+
+                                <Image
+                                    alt={alt}
+                                    width={16}
+                                    height={16}
+                                    src={'/image/flags/' + path + '.png'}
+                                    className="responSiveMenuSettings"
+                                />
+                                <TertiaryButton text={selected} icon='material-symbols-outlined' iconText='arrow_drop_down' />
+                            </div>
+
+                            <div
+                                id='respIdiomaSelections'
+                                className="hidden idiomasContainer"
+                            >
+                                <IdiomaSubMenu
+                                    data={idiomaData}
+                                    func={setLang}
+                                    selected={selected}
+                                />
+                            </div>
+
+                        </IdiomaWrapper >
                     </nav>
 
                     <span className="respVerticalRow"></span>
@@ -107,12 +184,20 @@ const Navbar: React.FC = function () {
 
                 <ul className="responsiveListItems">
 
-                    <li onClick={toggleRespModal}>
+                    <li >
                         <div className="stateManager" >
-                            <p>Soluções</p>
-                            <i className="material-symbols-outlined">arrow_drop_down</i>
+                            <p
+                                onClick={() => toggleSubMenu('respModalSolucoes')}
+                            >Soluções</p>
+                            <i
+                                className="material-symbols-outlined"
+                                onClick={() => toggleSubMenu('respModalSolucoes')}
+                            >arrow_drop_down</i>
                         </div>
-                        <div className="modalState hidden" id="respModalSolucoes" onMouseLeave={toggleRespModal}>
+                        <div
+                            className="modalState hidden"
+                            id="respModalSolucoes"
+                        >
                             <SolucoesSubMenu />
                         </div>
                     </li>
