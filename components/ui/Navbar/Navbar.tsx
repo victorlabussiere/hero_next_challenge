@@ -5,39 +5,30 @@ import { useState } from "react";
 // components | types
 import { PrimaryButton, SecundaryButton, TertiaryButton } from '../Buttons/Buttons'
 import { SolucoesSubMenu } from "./solucoesSubMenu/SolucoesSubMenu";
-// import { IdiomaSubMenu } from "./idiomaSubMenu/idiomaSubMenu";
 import { selectPropsObj } from '../Types'
-
 import { IdiomaWrapper } from "./idiomaSubMenu/idiomas.styles";
+
+// utils
+import { toggleSubMenu } from './utils'
 
 // styled-components
 import { NavWrapper, AcoesWrapper, LinksWrapper, MenuResponsiveWrapper } from "./navbar.styles";
 import { IdiomaSubMenu } from "./idiomaSubMenu/IdiomaSubMenu";
 
-type navProps = {
-    idiomaData: selectPropsObj[]
-}
+const Navbar = function ({ idiomaData }: { idiomaData: selectPropsObj[] }): JSX.Element {
 
-const Navbar = function ({ idiomaData }: navProps): JSX.Element {
-
+    // menu responsivo de links 
     const [responsiveMenuDisplay, setResponsiveMenuDisplay] = useState(false)
-
-    const toggleSubMenu = function (elementClass: string) {
-        const modal = document.getElementById(elementClass)
-        modal?.classList.toggle('hidden')
-    }
 
     // idiomas
     const [selected, setSelected] = useState(idiomaData[0].idioma)
     const [path, setPath] = useState(idiomaData[0].imgPath)
     const [alt, setAlt] = useState(idiomaData[0].imgAlt)
 
-    const setLang = function (dt: selectPropsObj, callback: void) {
+    const setLang = function (dt: selectPropsObj): void {
         setAlt(dt.imgAlt)
         setPath(dt.imgPath)
         setSelected(dt.idioma);
-
-        return callback
     }
 
     return (

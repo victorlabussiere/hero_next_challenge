@@ -13,5 +13,3 @@ export interface selectPropsObj {
     imgPath: string,
     imgAlt: string
 }
-
-export type arrSelectProps = selectPropsObj[]
