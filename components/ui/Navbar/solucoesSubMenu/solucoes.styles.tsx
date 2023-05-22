@@ -5,6 +5,7 @@ export const Modal__wrapper = styled.div`
     position: absolute;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     box-sizing: border-box;
     opacity: 1;
     min-width: 800px;
@@ -28,7 +29,7 @@ export const Modal__wrapper = styled.div`
         z-index: 9;
         
         flex-direction: column;
-        justify-content: space-evenly;
+        justify-content: flex-start;
         
         height: fit-content;
         min-width: unset;
@@ -52,14 +53,14 @@ export const Modal__list = styled.ul`
     @media (max-width: 1220px) {
         color: #000;
         gap: .5rem;
+        justify-content: flex-start;
     }
 `
 
 export const Modal__card = styled.li`
     display: flex;
-    align-items: flex-start;
-    align-content: start;
-    justify-content: start;
+    align-items: center;
+    justify-content: flex-start;
     
     gap: 1rem;    
     padding: 1rem;
@@ -72,6 +73,7 @@ export const Modal__card = styled.li`
         width: max-content;
         display: flex;
         flex-direction: column;
+        align-items: flex-start;
         animation: ${animationHorizontal(1, 24)} .6s ease-in-out;
         color: #000;
     }
@@ -92,6 +94,6 @@ export const Modal__card = styled.li`
 
     @media (max-width: 720px) {
         width: 100%;
-        align-items: center;
+        align-items: center;        
     }
 `

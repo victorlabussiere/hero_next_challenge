@@ -12,8 +12,8 @@ import { setSubMenuIcon, toggleSubMenu } from "../../../utils/nav_helpers";
 import { NavbarTexts, idiomaDataType } from "../../../types";
 
 const Navbar = function (
-    { idiomaData, texts, thisPath }: {
-        idiomaData: idiomaDataType[],
+    { idiomasSubmenu, texts, thisPath }: {
+        idiomasSubmenu: idiomaDataType[],
         texts: NavbarTexts,
         thisPath: string
     }) {
@@ -97,7 +97,7 @@ const Navbar = function (
                         onMouseLeave={() => toggleSubMenu('idiomaSelections')}
                     >
                         <IdiomaSubMenu
-                            data={idiomaData}
+                            data={idiomasSubmenu}
                             selected={iconIdioma}
                         />
 
@@ -146,7 +146,7 @@ const Navbar = function (
                                 className="hidden idiomasContainer"
                             >
                                 <IdiomaSubMenu
-                                    data={idiomaData}
+                                    data={idiomasSubmenu}
                                     selected={iconIdioma}
                                 />
                             </div>

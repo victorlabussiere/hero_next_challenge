@@ -76,24 +76,24 @@
             "modal": {
                 "title1": "Crie uma Escola Online",
                 "title2": "Comunidade e rede social",
-                "titel3": "Gamificação",
-                "titel4": "Aplicativo Mobile"
+                "title3": "Gamificação",
+                "title4": "Aplicativo Mobile"
             },
             "submenu": [
                 {
                     "idioma": "EN",
                     "imgAlt": "EUA FLAG",
-                    "imgPath": "EN"
+                    "imgPath": "usa-flag"
                 },
                 {
                     "idioma": "ES",
                     "imgAlt": "SPAIN FLAG",
-                    "imgPath": "ES"
+                    "imgPath": "spain-flag"
                 },
                 {
                     "idioma": "PT",
                     "imgAlt": "BRASIL FLAG",
-                    "imgPath": "PT"
+                    "imgPath": "brasil-flag"
                 }
             ]
         },
@@ -118,17 +118,17 @@
                 {
                     "idioma": "EN",
                     "imgAlt": "EUA FLAG",
-                    "imgPath": "EN"
+                    "imgPath": "usa-flag"
                 },
                 {
                     "idioma": "ES",
                     "imgAlt": "SPAIN FLAG",
-                    "imgPath": "ES"
+                    "imgPath": "spain-flag"
                 },
                 {
                     "idioma": "PT",
                     "imgAlt": "BRASIL FLAG",
-                    "imgPath": "PT"
+                    "imgPath": "brasil-flag"
                 }
             ]
         },
@@ -153,17 +153,17 @@
                 {
                     "idioma": "EN",
                     "imgAlt": "EUA FLAG",
-                    "imgPath": "EN"
+                    "imgPath": "usa-flag"
                 },
                 {
                     "idioma": "ES",
                     "imgAlt": "SPAIN FLAG",
-                    "imgPath": "ES"
+                    "imgPath": "spain-flag"
                 },
                 {
                     "idioma": "PT",
                     "imgAlt": "BRASIL FLAG",
-                    "imgPath": "PT"
+                    "imgPath": "brasil-flag"
                 }
             ]
         }

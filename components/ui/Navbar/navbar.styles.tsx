@@ -210,13 +210,15 @@ export const Menu_responsivo__wrapper = styled.div`
             width: 100%;
             display: flex;
             padding: 1.6rem 0;
-            border-top: 1px solid rgba(153, 244, 245, 0.6);
             animation: ${animationHorizontal(1, -16)} .6s ease-in-out;
-            align-items: center;
-            justify-content: space-between;
+            align-items: center;            
+            ${hoverSettings}    
+            border-left: 2px solid transparent;
             
-            ${hoverSettings}
-            
+            &:hover {
+                padding-left: 1rem;
+                border-left: 2px solid #5f41d980;
+            }
         }
 
         .modalState {

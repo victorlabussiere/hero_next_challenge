@@ -62,7 +62,7 @@ export default createGlobalStyle`
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;            
+        justify-content: center;     
     }
 
     .hidden {
@@ -71,8 +71,8 @@ export default createGlobalStyle`
     }
 
     h1{
-        width: 499px;
-        height: 96px;
+        width: 550px;
+        
         ${Inner_fontStyle}
         font-size: 44px;
         font-weight: 700;

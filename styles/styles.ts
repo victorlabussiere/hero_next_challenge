@@ -8,7 +8,12 @@ export const Hero__wrapper = styled.section`
     justify-content: center;
     gap: 2rem;
     width: 100%;
-    ${Inner_fontStyle}    
+    ${Inner_fontStyle} 
+    
+    @media (min-width: 2560px) {
+            max-width: 2320px;
+    }
+    
 `
 
 export const Hero__container = styled.aside`
@@ -114,6 +119,7 @@ export const Hero__container = styled.aside`
 export const Hero__illustration = styled.div`
     position: relative;
     margin-bottom: -3px;
+    max-width: 650px;
     
     @media (max-width: 1220px) {
         width: 70%
@@ -152,6 +158,12 @@ export const Detalhes__container = styled.div`
     display: flex;
     flex-direction: column;
     gap: 4.25rem;
+
+    @media (min-width: 2560px) {
+            max-width: 2320px;
+            padding: 0 12vw;
+    }
+
         header {
             display: flex;
             flex-direction: column;
