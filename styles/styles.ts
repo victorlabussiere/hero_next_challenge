@@ -113,7 +113,7 @@ export const Hero__container = styled.aside`
 
 export const Hero__illustration = styled.div`
     position: relative;
-    margin-bottom: -.5vw;
+    margin-bottom: -3px;
     
     @media (max-width: 1220px) {
         width: 70%

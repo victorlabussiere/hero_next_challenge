@@ -24,9 +24,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     }
   ]
 
-  // const data: Promise<CardData[]> = fetch('http://localhost:3001/cards')
-  //   .then(res => res.json())
-  //   .catch(err => err.json())
+  const data: Promise<CardData[]> = fetch('http://localhost:3001/cards')
+    .then(res => res.json())
+    .catch(err => err.json())
 
-  return await res.status(200).json(MOCK_DATA)
+  try {
+    return await res.status(200).json(await data)
+  } catch (e) {
+    console.error('Não foi possível receber os dados relacionados aos Cards')
+    return res.status(200).json(MOCK_DATA)
+  }
+
 }

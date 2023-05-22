@@ -7,8 +7,7 @@ export const Inner_fontStyle = `
     font-weight: 500;
     font-size: 15px;
     line-height: 105%;
-    color: #fff;
-    opacity: calc(.9);
+    color: #fff;    
 `
 export const hoverSettings = `
     &:hover {
