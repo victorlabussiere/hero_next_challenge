@@ -86,17 +86,17 @@ export const MOCK_NAVBAR_TEXTS: NavbarDBTexts =
             {
                 idioma: 'EN',
                 imgAlt: 'USA FLAG',
-                imgPath: 'usaFlag'
+                imgPath: 'usa-flag'
             },
             {
                 idioma: 'ES',
                 imgAlt: "SPAIN FLAG",
-                imgPath: 'spainFlag'
+                imgPath: 'spain-flag'
             },
             {
                 idioma: 'PT',
                 imgAlt: "BRASIL FLAG",
-                imgPath: "brFlag"
+                imgPath: "brasil-flag"
             }
         ]
     },
@@ -119,17 +119,17 @@ export const MOCK_NAVBAR_TEXTS: NavbarDBTexts =
             {
                 idioma: 'EN',
                 imgAlt: 'USA FLAG',
-                imgPath: 'usaFlag'
+                imgPath: 'usa-flag'
             },
             {
                 idioma: 'ES',
                 imgAlt: "SPAIN FLAG",
-                imgPath: 'spainFlag'
+                imgPath: 'spain-flag'
             },
             {
                 idioma: 'PT',
                 imgAlt: "BRASIL FLAG",
-                imgPath: "brFlag"
+                imgPath: "brasil-flag"
             }
         ]
     },
@@ -152,17 +152,17 @@ export const MOCK_NAVBAR_TEXTS: NavbarDBTexts =
             {
                 idioma: 'EN',
                 imgAlt: 'USA FLAG',
-                imgPath: 'usaFlag'
+                imgPath: 'usa-flag'
             },
             {
                 idioma: 'ES',
                 imgAlt: "SPAIN FLAG",
-                imgPath: 'spainFlag'
+                imgPath: 'spain-flag'
             },
             {
                 idioma: 'PT',
                 imgAlt: "BRASIL FLAG",
-                imgPath: "brFlag"
+                imgPath: "brasil-flag"
             }
         ]
     }
