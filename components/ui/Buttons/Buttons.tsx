@@ -1,32 +1,36 @@
-import { PriButtonWrapper, SecButtonWrapper, TerButtonWrapper } from './buttonsStyles'
+import { Button__primary, Button__secundary, Button__tertiary } from './buttonsStyles'
 import { ButtonProps } from '../types'
+import React from 'react'
 
-export const PrimaryButton = function ({ text, icon, iconText }: ButtonProps): JSX.Element {
+export const PrimaryButton = function ({ text, icon, iconClass, children }: ButtonProps): JSX.Element {
 
     return (
-        <PriButtonWrapper role="button">
+        <Button__primary role="button">
+            {children ? children : ''}
             <p>{text}</p>
-            {icon ? <i className={icon}> {iconText} </i> : ''}
-        </PriButtonWrapper >
+            {icon ? <i className={icon}> {iconClass} </i> : ''}
+        </Button__primary >
     )
 }
 
-export const SecundaryButton = function ({ text, icon, iconText }: ButtonProps): JSX.Element {
+export const SecundaryButton = function ({ text, icon, iconClass, children }: ButtonProps): JSX.Element {
 
     return (
-        <SecButtonWrapper role="button" className="primaryButton">
+        <Button__secundary role="button">
+            {children ? children : ''}
             <p>{text}</p>
-            {icon ? <i className={icon}> {iconText} </i> : ''}
-        </SecButtonWrapper >
+            {icon ? <i className={icon}> {iconClass} </i> : ''}
+        </Button__secundary >
     )
 }
 
-export const TertiaryButton = function ({ text, icon, iconText }: ButtonProps): JSX.Element {
+export const TertiaryButton = function ({ text, icon, iconClass, children }: ButtonProps): JSX.Element {
 
     return (
-        <TerButtonWrapper role="button" className="primaryButton">
+        <Button__tertiary role="button">
+            {children ? children : ''}
             <p>{text}</p>
-            {icon ? <i className={icon}> {iconText} </i> : ''}
-        </TerButtonWrapper >
+            {icon ? <i className={icon}> {iconClass} </i> : ''}
+        </Button__tertiary >
     )
 }

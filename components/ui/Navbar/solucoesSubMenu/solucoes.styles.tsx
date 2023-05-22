@@ -1,15 +1,7 @@
 import styled from "styled-components";
-import { animationVertical, animationHorizontal } from "../../Utils.style";
+import { animationVertical, animationHorizontal } from "../../../../styles/globals";
 
-export const ModalHeaderWrapper = styled.hgroup`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-`
-
-
-export const ModalWrapper = styled.div`
+export const Modal__wrapper = styled.div`
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -30,53 +22,6 @@ export const ModalWrapper = styled.div`
     color: #5F41D9;
     font-weight: 600;
 
-    .modalContent {
-        display: flex;
-        align-content: space-evenly ;
-        align-items: center;
-        gap: 1rem;
-        justify-content: space-around;
-        flex-wrap: wrap;
-        flex: 1 1 100%;
-        color: #000;
-       
-        .card {
-
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            gap: 1rem;
-            
-            padding: 1rem;
-            border-radius: 9px;
-            border: 1px transparent solid;
-            flex: 0 2 45%;
-
-            animation: ${animationHorizontal(1, -16)} ease-in-out .6s;
-            transition: all .3s ease-in-out;
-            &:hover{
-                border: 1px solid #5F41D9;
-            }
-            
-            .cardContent {
-                width: max-content;
-                display: flex;
-                flex-direction: column;
-                animation: ${animationHorizontal(1, 24)} .6s ease-in-out;
-                color: #000;
-                
-                h4 {
-                    font-weight: 600;
-                }
-    
-                p {
-                    font-weight: 400;
-                }
-            }
-        }
-    }
-
-
     @media(max-width: 1220px) {
         position: absolute;
         top: 90%;
@@ -91,35 +36,62 @@ export const ModalWrapper = styled.div`
         padding: 1rem;
 
         animation: ${animationVertical(1, -40)} ease-in-out .3s;
-        
-        
-        .modalContent{
-            color: #000;
-            gap: .5rem;
-                        
-            .card {
-                padding: 1rem;
-                border: none;
-                justify-content: flex-start;
-                flex: unset;
-                flex-basis: unset;
-                align-items: flex-start;
-                width: 40%;
-                &:hover {
-                    border: unset;
-                }
-            }
-            @media (max-width: 720px) {
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
+    }
+`
 
-                .card {
-                    width: 100%;
-                    align-items: center;
-                }
-            }
-        }
+export const Modal__list = styled.ul`
+    display: flex;
+    align-content: space-evenly ;
+    align-items: center;
+    gap: 1rem;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    flex: 1 1 100%;
+    color: #000;
     
+    @media (max-width: 1220px) {
+        color: #000;
+        gap: .5rem;
+    }
+`
+
+export const Modal__card = styled.li`
+    display: flex;
+    align-items: flex-start;
+    align-content: start;
+    justify-content: start;
+    
+    gap: 1rem;    
+    padding: 1rem;
+    
+    animation: ${animationHorizontal(1, -16)} ease-in-out .6s;
+    transition: all .3s ease-in-out;
+    border: 1px transparent solid;
+    
+    .cardContent {
+        width: max-content;
+        display: flex;
+        flex-direction: column;
+        animation: ${animationHorizontal(1, 24)} .6s ease-in-out;
+        color: #000;
+    }
+
+    @media (max-width: 1220px) {
+        padding: 1rem;
+        border: none;
+        justify-content: flex-start;
+        flex: unset;
+        flex-basis: unset;
+        align-items: flex-start;
+        width: 40%;
+        
+        &:hover {
+            border: unset;
+        }
+    }
+
+    @media (max-width: 720px) {
+        width: 100%;
+        align-items: center;
     }
 `

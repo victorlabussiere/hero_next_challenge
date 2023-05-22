@@ -1,17 +1,11 @@
 import Image from 'next/image'
-import { selectPropsObj } from '../../types'
-import { SelecaoIdiomasWrapper } from './idiomas.styles'
+import { IdiomaSubmenuType } from '../../types'
+import { Idioma_list__wrapper } from './idiomas.styles'
 
-type IdiomaSubMenuType = {
-    data: selectPropsObj[],
-    func: (dt: selectPropsObj) => void,
-    selected: string,
-}
-
-export const IdiomaSubMenu = function ({ data, func, selected }: IdiomaSubMenuType) {
+export const IdiomaSubMenu = function ({ data, func, selected }: IdiomaSubmenuType) {
 
     return (
-        <SelecaoIdiomasWrapper>
+        <Idioma_list__wrapper>
             {data.map((dt, index) =>
                 <li
                     value={index + 1}
@@ -23,7 +17,7 @@ export const IdiomaSubMenu = function ({ data, func, selected }: IdiomaSubMenuTy
                         alt={dt.imgAlt}
                         width={16}
                         height={16}
-                        src={'/image/flags/' + dt.imgPath + '.png'}
+                        src={'/image/navbar-assets/flags/' + dt.imgPath + '.png'}
                     />
 
                     <p>{dt.idioma}</p>
@@ -35,6 +29,6 @@ export const IdiomaSubMenu = function ({ data, func, selected }: IdiomaSubMenuTy
 
                 </li >
             )}
-        </SelecaoIdiomasWrapper>
+        </Idioma_list__wrapper>
     )
 }

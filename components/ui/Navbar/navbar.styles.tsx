@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import { animationHorizontal, fontStyle, navElementsHover, responsiveHiddenDisplay } from '../../ui/Utils.style'
+import { animationHorizontal, Inner_fontStyle, hoverSettings, responsiveHiddenDisplay } from '../../../styles/globals'
 
-export const NavWrapper = styled.nav`
+export const Navbar__wrapper = styled.nav`
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -13,14 +13,14 @@ export const NavWrapper = styled.nav`
 
     width: 100vw;
     height: 88px;
-    padding: .5rem 15vw;
+    padding: .5rem 8vw;
 
     background: rgba(0, 0, 0, 0.03);
     backdrop-filter: blur(15px);
 
     .logo-ensinio {       
         cursor: pointer;
-        animation: ${animationHorizontal(1, -16)} + 1s ease-in-out;
+        animation: ${animationHorizontal(1, -16)} + .3s ease-in-out;
     }
 
     .verticalRow {
@@ -43,8 +43,8 @@ export const NavWrapper = styled.nav`
         visibility: visible;
         font-size: 1.5rem;
 
-        ${navElementsHover}
-        animation: ${animationHorizontal(.6, 16)} ease-in-out 1s;
+        ${hoverSettings}
+        animation: ${animationHorizontal(.6, 16)} ease-in-out .3s;
 
         @media (min-width: 1220px) {
             ${responsiveHiddenDisplay}
@@ -65,12 +65,12 @@ export const NavWrapper = styled.nav`
     }
     
 `
-export const LinksWrapper = styled.ul`
+export const Linklist_wrapper = styled.ul`
     display: flex;
     align-items: center;
     justify-content: center;
     
-    ${fontStyle}
+    ${Inner_fontStyle}
     gap: 2vw;
     color: #fff;
 
@@ -97,7 +97,7 @@ export const LinksWrapper = styled.ul`
         height: 100%;
         gap: .5rem;            
         list-style: none;
-        ${navElementsHover} 
+        ${hoverSettings} 
         position: relative;
 
         animation: ${animationHorizontal(.9, -16)} ease-in-out 1s;
@@ -127,7 +127,7 @@ export const LinksWrapper = styled.ul`
 
 
 `
-export const AcoesWrapper = styled.div`
+export const Navbar_buttons__wrapper = styled.div`
     display: flex;
     align-items: center;
     height: 100%;
@@ -138,7 +138,7 @@ export const AcoesWrapper = styled.div`
     }
 
 `
-export const MenuResponsiveWrapper = styled.div`
+export const Menu_responsivo__wrapper = styled.div`
     background-color: #5f41d9;
     position: absolute;
     top: 0;
@@ -155,7 +155,7 @@ export const MenuResponsiveWrapper = styled.div`
     padding: .2rem 2rem;
     gap: 2rem;
 
-    animation: ${animationHorizontal(1, -40)} ease-in-out .6s;
+    animation: ${animationHorizontal(1, -40)} ease-in-out .3s;
 
     header {
         display: flex;
@@ -190,7 +190,7 @@ export const MenuResponsiveWrapper = styled.div`
         display: flex;
         flex-direction: column;
         list-style: none;   
-        ${fontStyle}
+        ${Inner_fontStyle}
         width: 100%;
         opacity: 1;
         
@@ -215,7 +215,7 @@ export const MenuResponsiveWrapper = styled.div`
             align-items: center;
             justify-content: space-between;
             
-            ${navElementsHover}
+            ${hoverSettings}
             
         }
 

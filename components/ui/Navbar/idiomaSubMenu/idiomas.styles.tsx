@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { animationVertical, fontStyle } from '../../Utils.style'
+import { animationVertical } from "../../../../styles/globals";
 
-export const IdiomaWrapper = styled.div`
+export const Idioma_submenu__wrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -21,8 +21,7 @@ export const IdiomaWrapper = styled.div`
     }
 `
 
-export const SelecaoIdiomasWrapper = styled.ul`        
-    ${fontStyle}
+export const Idioma_list__wrapper = styled.ul`        
     width: 138px;
     color: #5F41D9;
     background-color: #fff;
@@ -51,14 +50,14 @@ export const SelecaoIdiomasWrapper = styled.ul`
         height: fit-content;
         align-items: center;
         justify-content: flex-start;
-        width: 100%;
+        width: 100%;        
             
         i {
             justify-self: end;
         }
 
         &:first-child {
-            border-radius: 8px 8px 0 0;
+            border-radius: 8px 8px 0 0;            
         }
         &:last-child {
             border-radius: 0 0 8px 8px;

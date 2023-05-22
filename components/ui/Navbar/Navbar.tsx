@@ -1,49 +1,50 @@
 // react 
 import Image from "next/image";
 import { useState } from "react";
-
 // components | types
 import { PrimaryButton, SecundaryButton, TertiaryButton } from '../Buttons/Buttons'
 import { SolucoesSubMenu } from "./solucoesSubMenu/SolucoesSubMenu";
-import { selectPropsObj } from '../types'
-import { IdiomaWrapper } from "./idiomaSubMenu/idiomas.styles";
-
-// utils
-import { toggleSubMenu } from './utils'
-
-// styled-components
-import { NavWrapper, AcoesWrapper, LinksWrapper, MenuResponsiveWrapper } from "./navbar.styles";
 import { IdiomaSubMenu } from "./idiomaSubMenu/IdiomaSubMenu";
+import { idiomaDataType } from '../types'
+// styled-components
+import { Navbar__wrapper, Navbar_buttons__wrapper, Linklist_wrapper, Menu_responsivo__wrapper } from "./navbar.styles";
+import { Idioma_submenu__wrapper } from "./idiomaSubMenu/idiomas.styles";
 
-const Navbar = function ({ idiomaData }: { idiomaData: selectPropsObj[] }): JSX.Element {
+const Navbar = function ({ idiomaData }: { idiomaData: idiomaDataType[] }): JSX.Element {
 
-    // menu responsivo de links 
+    // menu responsivo display control
     const [responsiveMenuDisplay, setResponsiveMenuDisplay] = useState(false)
 
-    // idiomas
+    // idiomas state control
     const [selected, setSelected] = useState(idiomaData[0].idioma)
     const [path, setPath] = useState(idiomaData[0].imgPath)
     const [alt, setAlt] = useState(idiomaData[0].imgAlt)
 
-    const setLang = function (dt: selectPropsObj): void {
+    // controllers
+    const toggleSubMenu = function (elementClass: string) {
+        const modal = document.getElementById(elementClass)
+        modal?.classList.toggle('hidden')
+    }
+
+    const setIdioma = function (dt: idiomaDataType): void {
         setAlt(dt.imgAlt)
         setPath(dt.imgPath)
         setSelected(dt.idioma);
     }
 
     return (
-        <NavWrapper>
+        <Navbar__wrapper>
 
             <Image
                 className="logo-ensinio"
-                src='/image/logo/ensinio-logo.png'
+                src='/image/navbar-assets/logo/ensinio-logo.png'
                 width={158.71}
                 height={40}
                 alt='Ensinio logo'>
 
             </Image>
 
-            <LinksWrapper>
+            <Linklist_wrapper>
                 <li>
                     <div
                         className="stateManager"
@@ -66,31 +67,30 @@ const Navbar = function ({ idiomaData }: { idiomaData: selectPropsObj[] }): JSX.
                 <li>Academy</li>
                 <li>Blog</li>
                 <li>Contato</li>
-            </LinksWrapper>
+            </Linklist_wrapper>
 
             <span className="verticalRow"></span>
 
-            <AcoesWrapper>
+            <Navbar_buttons__wrapper>
 
-                <TertiaryButton text='Entrar' icon='material-symbols-outlined' iconText="account_circle" />
+                <TertiaryButton text='Entrar' icon='material-symbols-outlined' iconClass="account_circle" />
                 <SecundaryButton text='Começar agora' />
 
-                <IdiomaWrapper
+                <Idioma_submenu__wrapper
                 >
                     <div
                         className='stateManager'
                         onMouseEnter={() => toggleSubMenu('idiomaSelections')}
                         onClick={() => toggleSubMenu('idiomaSelections')}
                     >
-
                         <Image
                             alt={alt}
                             width={16}
                             height={16}
-                            src={'/image/flags/' + path + '.png'}
+                            src={'/image/navbar-assets/flags/' + path + '.png'}
                             className="responSiveMenuSettings"
                         />
-                        <TertiaryButton text={selected} icon='material-symbols-outlined' iconText='arrow_drop_down' />
+                        <TertiaryButton text={selected} icon='material-symbols-outlined' iconClass='arrow_drop_down' />
                     </div>
 
                     <div
@@ -100,35 +100,35 @@ const Navbar = function ({ idiomaData }: { idiomaData: selectPropsObj[] }): JSX.
                     >
                         <IdiomaSubMenu
                             data={idiomaData}
-                            func={setLang}
+                            func={setIdioma}
                             selected={selected}
                         />
 
                     </div>
 
-                </IdiomaWrapper >
+                </Idioma_submenu__wrapper >
 
-            </AcoesWrapper>
+            </Navbar_buttons__wrapper>
 
             <div
                 className="burgerMenu"
                 onClick={() => setResponsiveMenuDisplay(true)}>
                 <TertiaryButton
                     icon='material-symbols-outlined'
-                    iconText="menu"
+                    iconClass="menu"
                     text=''
                 />
             </div>
 
-            <MenuResponsiveWrapper
+            <Menu_responsivo__wrapper
                 className={!responsiveMenuDisplay ? 'hidden' : ''}
                 id='responsiveMenu'
             >
                 <header>
 
                     <nav>
-                        <TertiaryButton icon='material-symbols-outlined' text={'Entrar'} iconText="account_circle" />
-                        <IdiomaWrapper
+                        <TertiaryButton icon='material-symbols-outlined' text={'Entrar'} iconClass="account_circle" />
+                        <Idioma_submenu__wrapper
                         >
                             <div
                                 className='stateManager'
@@ -142,7 +142,7 @@ const Navbar = function ({ idiomaData }: { idiomaData: selectPropsObj[] }): JSX.
                                     src={'/image/flags/' + path + '.png'}
                                     className="responSiveMenuSettings"
                                 />
-                                <TertiaryButton text={selected} icon='material-symbols-outlined' iconText='arrow_drop_down' />
+                                <TertiaryButton text={selected} icon='material-symbols-outlined' iconClass='arrow_drop_down' />
                             </div>
 
                             <div
@@ -151,12 +151,12 @@ const Navbar = function ({ idiomaData }: { idiomaData: selectPropsObj[] }): JSX.
                             >
                                 <IdiomaSubMenu
                                     data={idiomaData}
-                                    func={setLang}
+                                    func={setIdioma}
                                     selected={selected}
                                 />
                             </div>
 
-                        </IdiomaWrapper >
+                        </Idioma_submenu__wrapper >
                     </nav>
 
                     <span className="respVerticalRow"></span>
@@ -167,7 +167,7 @@ const Navbar = function ({ idiomaData }: { idiomaData: selectPropsObj[] }): JSX.
                         <TertiaryButton
                             text=''
                             icon='material-symbols-outlined'
-                            iconText={'close'}
+                            iconClass={'close'}
                         />
                     </i>
 
@@ -199,10 +199,10 @@ const Navbar = function ({ idiomaData }: { idiomaData: selectPropsObj[] }): JSX.
                 </ul>
 
                 <PrimaryButton text='Começar' />
-            </MenuResponsiveWrapper>
+            </Menu_responsivo__wrapper>
 
 
-        </NavWrapper >
+        </Navbar__wrapper >
     )
 }
 

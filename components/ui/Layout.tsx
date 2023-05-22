@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types'
 import Navbar from './Navbar/Navbar'
 import GlobalStyle from '../../styles/globals'
-import { selectPropsObj } from './types'
+import { idiomaDataType } from './types'
 
 interface LayoutProps {
     children: React.ReactNode
 }
 
-const ArrIdiomas: selectPropsObj[] = [
+const ArrIdiomas: idiomaDataType[] = [
     { idioma: 'PT', imgAlt: 'BRASIL', imgPath: 'brFlag' },
     { idioma: 'EN', imgAlt: 'EUA', imgPath: 'usaFlag' },
     { idioma: 'ES', imgAlt: 'SPAIN', imgPath: 'spainFlag' }
