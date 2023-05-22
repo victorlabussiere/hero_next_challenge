@@ -1,34 +1,24 @@
 import Image from 'next/image'
-import { Idioma_list__wrapper } from './idiomas.styles'
+import { Idioma_list__wrapper, Idioma_link } from './idiomas.styles'
+import { IdiomaSubmenuType } from '../../../../types'
 
-interface idiomaDataType {
-    idioma: string,
-    imgPath: string,
-    imgAlt: string
-}
 
-interface IdiomaSubmenuType {
-    data: idiomaDataType[],
-    func: (dt: idiomaDataType) => void,
-    selected: string,
-}
-
-export const IdiomaSubMenu = function ({ data, func, selected }: IdiomaSubmenuType) {
+export const IdiomaSubMenu = function ({ data, selected }: IdiomaSubmenuType) {
 
     return (
         <Idioma_list__wrapper>
+
             {data.map((dt, index) =>
-                <li
-                    value={index + 1}
-                    key={index}
-                    onClick={() => func(dt)}
+                <Idioma_link
+                    href={`/${dt.idioma}`}
+                    key={index + 1}
                     className={selected === dt.idioma ? 'selectedItem' : ''}
                 >
                     <Image
                         alt={dt.imgAlt}
                         width={16}
                         height={16}
-                        src={'/image/navbar-assets/flags/' + dt.imgPath + '.png'}
+                        src={'/image/navbar-assets/flags/' + dt.idioma + '.png'}
                     />
 
                     <p>{dt.idioma}</p>
@@ -38,7 +28,7 @@ export const IdiomaSubMenu = function ({ data, func, selected }: IdiomaSubmenuTy
                         : 'hideCheck'
                     }> done </i>
 
-                </li >
+                </ Idioma_link>
             )}
         </Idioma_list__wrapper>
     )

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { animationVertical } from "../../../../styles/globals";
+import Link from "next/link";
 
 export const Idioma_submenu__wrapper = styled.div`
     display: flex;
@@ -77,4 +78,42 @@ export const Idioma_list__wrapper = styled.ul`
         }
     }
    
+`
+
+export const Idioma_link = styled(Link)`
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    height: fit-content;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;        
+
+    text-decoration: none;
+    font-style: none;
+        
+    i {
+        justify-self: end;
+    }
+
+    &:first-child {
+        border-radius: 8px 8px 0 0;            
+    }
+    &:last-child {
+        border-radius: 0 0 8px 8px;
+    }
+    &:hover {
+        cursor: pointer;
+        background-color: #e9e9e9;
+    }
+
+    .check {
+        color: #5F41D9;
+        margin-left: auto;
+    }
+    .hideCheck {
+        display: none;
+        visibility: hidden;
+    }
+    
 `

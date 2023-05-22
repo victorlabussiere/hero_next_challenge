@@ -1,4 +1,3 @@
-
 import Image from "next/image";
 import { useState } from "react";
 
@@ -9,22 +8,43 @@ import { IdiomaSubMenu } from "./idiomaSubMenu/IdiomaSubMenu";
 import { Navbar__wrapper, Navbar_buttons__wrapper, Linklist_wrapper, Menu_responsivo__wrapper } from "./navbar.styles";
 import { Idioma_submenu__wrapper } from "./idiomaSubMenu/idiomas.styles";
 
+import { NavbarTexts, idiomaDataType } from "../../../types";
+import { useRouter } from "next/router";
 
-interface idiomaDataType {
-    idioma: string,
-    imgPath: string,
-    imgAlt: string
-}
+const Navbar = function (
+    { idiomaData, texts }: {
+        idiomaData: idiomaDataType[],
+        texts: NavbarTexts,
+    }) {
 
-const Navbar = function ({ idiomaData }: { idiomaData: idiomaDataType[] }): JSX.Element {
+    const mockSub: idiomaDataType[] =
+        [
+            {
+                idioma: '',
+                imgAlt: '',
+                imgPath: ''
+            },
+            {
+                idioma: '',
+                imgAlt: '',
+                imgPath: ''
+            },
+            {
+                idioma: '',
+                imgAlt: '',
+                imgPath: ''
+            }
+        ]
 
+
+    const route = useRouter()
+    const { asPath } = route
     // menu responsivo display control
     const [responsiveMenuDisplay, setResponsiveMenuDisplay] = useState(false)
-
     // idiomas state control
-    const [selected, setSelected] = useState(idiomaData[0].idioma)
-    const [path, setPath] = useState(idiomaData[0].imgPath)
-    const [alt, setAlt] = useState(idiomaData[0].imgAlt)
+    const selected = asPath.slice(1)
+    const path = asPath
+    const alt = ''
 
     // controllers
     const toggleSubMenu = function (elementClass: string) {
@@ -32,15 +52,8 @@ const Navbar = function ({ idiomaData }: { idiomaData: idiomaDataType[] }): JSX.
         modal?.classList.toggle('hidden')
     }
 
-    const setIdioma = function (dt: idiomaDataType): void {
-        setAlt(dt.imgAlt)
-        setPath(dt.imgPath)
-        setSelected(dt.idioma);
-    }
-
     return (
         <Navbar__wrapper>
-
             <Image
                 className="logo-ensinio"
                 src='/image/navbar-assets/logo/ensinio-logo.png'
@@ -57,7 +70,7 @@ const Navbar = function ({ idiomaData }: { idiomaData: idiomaDataType[] }): JSX.
                         onMouseEnter={() => toggleSubMenu('modalSolucoes')}
                         onClick={() => toggleSubMenu('modalSolucoes')}
                     >
-                        <p>Soluções</p>
+                        <p>{texts.solucoes || ''}</p>
                         <i className="material-symbols-outlined">arrow_drop_down</i>
                     </div>
                     <div
@@ -65,22 +78,30 @@ const Navbar = function ({ idiomaData }: { idiomaData: idiomaDataType[] }): JSX.
                         id="modalSolucoes"
                         onMouseLeave={() => toggleSubMenu('modalSolucoes')}
                     >
-                        <SolucoesSubMenu />
+                        <SolucoesSubMenu
+                            modal={texts.modal || ''}
+                        />
                     </div>
                 </li>
 
-                <li>Preços</li>
-                <li>Academy</li>
-                <li>Blog</li>
-                <li>Contato</li>
+                <li>{texts.precos || ''}</li>
+                <li>{texts.academy || ''}</li>
+                <li>{texts.blog || ''}</li>
+                <li>{texts.contato || ''}</li>
             </Linklist_wrapper>
 
             <span className="verticalRow"></span>
 
             <Navbar_buttons__wrapper>
 
-                <TertiaryButton text='Entrar' icon='material-symbols-outlined' iconClass="account_circle" />
-                <SecundaryButton text='Começar agora' />
+                <TertiaryButton
+                    text={texts.buttonText.secundary || ''}
+                    icon='material-symbols-outlined'
+                    iconClass="account_circle"
+                />
+                <SecundaryButton
+                    text={texts.buttonText.primary || ''}
+                />
 
                 <Idioma_submenu__wrapper
                 >
@@ -93,8 +114,7 @@ const Navbar = function ({ idiomaData }: { idiomaData: idiomaDataType[] }): JSX.
                             alt={alt}
                             width={16}
                             height={16}
-                            src={'/image/navbar-assets/flags/' + path + '.png'}
-                            className="responSiveMenuSettings"
+                            src={'/image/navbar-assets/flags' + path + '.png'}
                         />
                         <TertiaryButton text={selected} icon='material-symbols-outlined' iconClass='arrow_drop_down' />
                     </div>
@@ -105,9 +125,8 @@ const Navbar = function ({ idiomaData }: { idiomaData: idiomaDataType[] }): JSX.
                         onMouseLeave={() => toggleSubMenu('idiomaSelections')}
                     >
                         <IdiomaSubMenu
-                            data={idiomaData}
-                            func={setIdioma}
-                            selected={selected}
+                            data={idiomaData || mockSub}
+                            selected={asPath.slice(1)}
                         />
 
                     </div>
@@ -140,15 +159,14 @@ const Navbar = function ({ idiomaData }: { idiomaData: idiomaDataType[] }): JSX.
                                 className='stateManager'
                                 onClick={() => toggleSubMenu('respIdiomaSelections')}
                             >
-
                                 <Image
                                     alt={alt}
                                     width={16}
                                     height={16}
-                                    src={'/image/flags/' + path + '.png'}
+                                    src={'/image/navbar-assets/flags/' + asPath.slice(1) + '.png'}
                                     className="responSiveMenuSettings"
                                 />
-                                <TertiaryButton text={selected} icon='material-symbols-outlined' iconClass='arrow_drop_down' />
+                                <TertiaryButton text={asPath.slice(1)} icon='material-symbols-outlined' iconClass='arrow_drop_down' />
                             </div>
 
                             <div
@@ -157,8 +175,7 @@ const Navbar = function ({ idiomaData }: { idiomaData: idiomaDataType[] }): JSX.
                             >
                                 <IdiomaSubMenu
                                     data={idiomaData}
-                                    func={setIdioma}
-                                    selected={selected}
+                                    selected={asPath.slice(1)}
                                 />
                             </div>
 
@@ -185,7 +202,7 @@ const Navbar = function ({ idiomaData }: { idiomaData: idiomaDataType[] }): JSX.
                         <div className="stateManager" >
                             <p
                                 onClick={() => toggleSubMenu('respModalSolucoes')}
-                            >Soluções</p>
+                            >{texts.solucoes || ''}</p>
                             <i
                                 className="material-symbols-outlined"
                                 onClick={() => toggleSubMenu('respModalSolucoes')}
@@ -195,13 +212,15 @@ const Navbar = function ({ idiomaData }: { idiomaData: idiomaDataType[] }): JSX.
                             className="modalState hidden"
                             id="respModalSolucoes"
                         >
-                            <SolucoesSubMenu />
+                            <SolucoesSubMenu
+                                modal={texts.modal}
+                            />
                         </div>
                     </li>
 
-                    <li>Preços</li>
-                    <li>Carreiras</li>
-                    <li>Contato</li>
+                    <li>{texts.precos || ''}</li>
+                    <li>{texts.carreiras || ''}</li>
+                    <li>{texts.contato || ''}</li>
                 </ul>
 
                 <PrimaryButton text='Começar' />

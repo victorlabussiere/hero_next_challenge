@@ -226,11 +226,7 @@ export const Menu_responsivo__wrapper = styled.div`
             }
         }
     }
-    // button
-    & :last-child {
-        z-index: -1;
-    }
-
+    
     // hide display
     &.hidden {
         display: none;

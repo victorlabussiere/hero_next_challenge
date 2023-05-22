@@ -1,9 +1,10 @@
 import Image from "next/image"
 
-import { CardData } from "./types"
+import { CardData } from "../../../types"
 import { Card_container, Cardlist_wrapper } from "./cardsList.style"
 
 type propCardType = { data: CardData[] }
+
 export const CardList = function ({ data }: propCardType): JSX.Element {
     return (
         <Cardlist_wrapper>
