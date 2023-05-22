@@ -11,7 +11,7 @@ interface ButtonProps {
 
 
 export const PrimaryButton = function ({ text, icon, iconClass, children }: ButtonProps): JSX.Element {
-
+    /** Button constituido por ícones opicionais, que podem ser imagens ou construindo uma tag <i> */
     return (
         <Button__primary role="button">
             {children ? children : ''}
@@ -22,7 +22,7 @@ export const PrimaryButton = function ({ text, icon, iconClass, children }: Butt
 }
 
 export const SecundaryButton = function ({ text, icon, iconClass, children }: ButtonProps): JSX.Element {
-
+    /** Button constituido por ícones opicionais, que podem ser imagens ou construindo uma tag <i> */
     return (
         <Button__secundary role="button">
             {children ? children : ''}
@@ -33,7 +33,7 @@ export const SecundaryButton = function ({ text, icon, iconClass, children }: Bu
 }
 
 export const TertiaryButton = function ({ text, icon, iconClass, children }: ButtonProps): JSX.Element {
-
+    /** Button constituido por ícones opicionais, que podem ser imagens ou construindo uma tag <i> */
     return (
         <Button__tertiary role="button">
             {children ? children : ''}

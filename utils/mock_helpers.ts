@@ -1,7 +1,8 @@
-import { NavbarDBTexts, idiomaDataType, NavbarTexts } from "../types"
-import { CardData, Idiomas_CardData } from "../types"
+import { NavbarDBTexts } from "../types"
+import { Idiomas_CardData } from "../types"
 
 export const MOCK_DATA: Idiomas_CardData = {
+    /** Dados mockados para abastecimento dos cards da seção Detalhes */
     PT: [
         {
             imgPath: "icon-trilhas",
@@ -64,13 +65,8 @@ export const MOCK_DATA: Idiomas_CardData = {
     ]
 }
 
-export const ArrIdiomas: idiomaDataType[] = [
-    { idioma: 'PT', imgAlt: 'BRASIL', imgPath: 'brFlag' },
-    { idioma: 'EN', imgAlt: 'EUA', imgPath: 'usaFlag' },
-    { idioma: 'ES', imgAlt: 'SPAIN', imgPath: 'spainFlag' }
-]
-
 export const MOCK_NAVBAR_TEXTS: NavbarDBTexts =
+/** Dados mockados para abastecimento dos textos do navbar */
 {
     PT: {
         solucoes: 'Soluções',
@@ -144,7 +140,7 @@ export const MOCK_NAVBAR_TEXTS: NavbarDBTexts =
         blog: 'Blog',
         contato: 'Contacto',
         carreiras: 'Carreras',
-        buttonText: { primary: 'Comenzar ahora', secundary: 'Ingresar' },
+        buttonText: { primary: 'Comenzar ahora', secundary: 'Entrar' },
         modal: {
             title1: 'Crea una Escuela en Línea',
             title2: 'Comunidad y Red Social',
@@ -171,24 +167,3 @@ export const MOCK_NAVBAR_TEXTS: NavbarDBTexts =
         ]
     }
 }
-
-export const MOCK_CARD: CardData[] = [
-    {
-        cardText: '',
-        cardTitle: '',
-        imgAlt: '',
-        imgPath: ''
-    },
-    {
-        cardText: '',
-        cardTitle: '',
-        imgAlt: '',
-        imgPath: ''
-    },
-    {
-        cardText: '',
-        cardTitle: '',
-        imgAlt: '',
-        imgPath: ''
-    }
-]

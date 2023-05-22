@@ -8,49 +8,21 @@ import { IdiomaSubMenu } from "./idiomaSubMenu/IdiomaSubMenu";
 import { Navbar__wrapper, Navbar_buttons__wrapper, Linklist_wrapper, Menu_responsivo__wrapper } from "./navbar.styles";
 import { Idioma_submenu__wrapper } from "./idiomaSubMenu/idiomas.styles";
 
+import { setSubMenuIcon, toggleSubMenu } from "../../../utils/nav_helpers";
 import { NavbarTexts, idiomaDataType } from "../../../types";
-import { useRouter } from "next/router";
 
 const Navbar = function (
-    { idiomaData, texts }: {
+    { idiomaData, texts, thisPath }: {
         idiomaData: idiomaDataType[],
         texts: NavbarTexts,
+        thisPath: string
     }) {
 
-    const mockSub: idiomaDataType[] =
-        [
-            {
-                idioma: '',
-                imgAlt: '',
-                imgPath: ''
-            },
-            {
-                idioma: '',
-                imgAlt: '',
-                imgPath: ''
-            },
-            {
-                idioma: '',
-                imgAlt: '',
-                imgPath: ''
-            }
-        ]
-
-
-    const route = useRouter()
-    const { asPath } = route
-    // menu responsivo display control
     const [responsiveMenuDisplay, setResponsiveMenuDisplay] = useState(false)
-    // idiomas state control
-    const selected = asPath.slice(1)
-    const path = asPath
-    const alt = ''
 
-    // controllers
-    const toggleSubMenu = function (elementClass: string) {
-        const modal = document.getElementById(elementClass)
-        modal?.classList.toggle('hidden')
-    }
+    const iconIdioma: string = setSubMenuIcon(thisPath).idioma
+    const iconImgPath: string = setSubMenuIcon(thisPath).imgPath
+    const iconImgAlt: string = setSubMenuIcon(thisPath).imgAlt
 
     return (
         <Navbar__wrapper>
@@ -111,12 +83,12 @@ const Navbar = function (
                         onClick={() => toggleSubMenu('idiomaSelections')}
                     >
                         <Image
-                            alt={alt}
+                            alt={iconImgAlt}
                             width={16}
                             height={16}
-                            src={'/image/navbar-assets/flags' + path + '.png'}
+                            src={'/image/navbar-assets/flags/' + iconImgPath + '.png'}
                         />
-                        <TertiaryButton text={selected} icon='material-symbols-outlined' iconClass='arrow_drop_down' />
+                        <TertiaryButton text={iconIdioma} icon='material-symbols-outlined' iconClass='arrow_drop_down' />
                     </div>
 
                     <div
@@ -125,8 +97,8 @@ const Navbar = function (
                         onMouseLeave={() => toggleSubMenu('idiomaSelections')}
                     >
                         <IdiomaSubMenu
-                            data={idiomaData || mockSub}
-                            selected={asPath.slice(1)}
+                            data={idiomaData}
+                            selected={iconIdioma}
                         />
 
                     </div>
@@ -160,13 +132,13 @@ const Navbar = function (
                                 onClick={() => toggleSubMenu('respIdiomaSelections')}
                             >
                                 <Image
-                                    alt={alt}
+                                    alt={iconImgAlt}
                                     width={16}
                                     height={16}
-                                    src={'/image/navbar-assets/flags/' + asPath.slice(1) + '.png'}
+                                    src={'/image/navbar-assets/flags/' + iconImgPath + '.png'}
                                     className="responSiveMenuSettings"
                                 />
-                                <TertiaryButton text={asPath.slice(1)} icon='material-symbols-outlined' iconClass='arrow_drop_down' />
+                                <TertiaryButton text={iconIdioma} icon='material-symbols-outlined' iconClass='arrow_drop_down' />
                             </div>
 
                             <div
@@ -175,7 +147,7 @@ const Navbar = function (
                             >
                                 <IdiomaSubMenu
                                     data={idiomaData}
-                                    selected={asPath.slice(1)}
+                                    selected={iconIdioma}
                                 />
                             </div>
 

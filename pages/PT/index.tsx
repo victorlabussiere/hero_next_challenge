@@ -2,44 +2,26 @@
 import Image from "next/image"
 import { useEffect, useState } from "react"
 
-import Navbar from '../../components/ui/Navbar/Navbar'
 import { CardList } from "../../components/ui/Cards/CardsList"
 import { PrimaryButton, TertiaryButton } from "../../components/ui/Buttons/Buttons"
 
 import { Hero__wrapper, Hero__container, Hero__illustration, Detalhes__container, Detalhes__wrapper, Detalhes__footer } from "../../styles/styles"
-import { MOCK_NAVBAR_TEXTS } from "../../utils/mock_helpers"
+
 
 export default function Home() {
   const [cardList, setCardList] = useState([])
 
-  const [navProps, setNavProps] = useState(MOCK_NAVBAR_TEXTS.PT)
-  const [subMenu, setSubMenu] = useState([])
-
   useEffect(() => {
-
-    fetch('/api/mockdb')
+    fetch('/api/cardsdata')
       .then(res => res.json())
-      .then(data => data.PT)
-      .then(res => {
-        setNavProps(res)
-        setSubMenu(res.submenu)
-      })
-      .catch(err => console.error('Erro na seleção de idiomas', err))
-      .finally(() => {
-        fetch('/api/cardsdata')
-          .then(res => res.json())
-          .then(data => setCardList(data.PT))
-          .catch(err => console.error('erro', err))
-      })
+      .then(data => setCardList(data.PT))
+      .catch(err => console.error('erro', err))
+
 
   }, [])
 
   return (
     <>
-      <Navbar
-        idiomaData={subMenu}
-        texts={navProps}
-      />
 
       <main>
         <Hero__wrapper>
