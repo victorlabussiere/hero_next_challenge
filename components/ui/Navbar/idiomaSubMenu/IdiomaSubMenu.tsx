@@ -1,6 +1,17 @@
 import Image from 'next/image'
-import { IdiomaSubmenuType } from '../../types'
 import { Idioma_list__wrapper } from './idiomas.styles'
+
+interface idiomaDataType {
+    idioma: string,
+    imgPath: string,
+    imgAlt: string
+}
+
+interface IdiomaSubmenuType {
+    data: idiomaDataType[],
+    func: (dt: idiomaDataType) => void,
+    selected: string,
+}
 
 export const IdiomaSubMenu = function ({ data, func, selected }: IdiomaSubmenuType) {
 
