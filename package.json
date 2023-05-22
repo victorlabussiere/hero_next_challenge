@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "npx concurrently \"json-server --watch db.json --port 3001\" \"next dev\"",
-    "build": "next build",
+    "build": "npx concurrently \"json-server --watch db.json --port 3001\" \"next build\"",
     "start": "npx concurrently \"json-server --watch db.json --port 3001\" \"next start\"",
     "lint": "next lint"
   },
