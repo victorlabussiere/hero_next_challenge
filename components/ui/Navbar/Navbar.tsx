@@ -1,14 +1,20 @@
-// react 
+
 import Image from "next/image";
 import { useState } from "react";
-// components | types
+
 import { PrimaryButton, SecundaryButton, TertiaryButton } from '../Buttons/Buttons'
 import { SolucoesSubMenu } from "./solucoesSubMenu/SolucoesSubMenu";
 import { IdiomaSubMenu } from "./idiomaSubMenu/IdiomaSubMenu";
-import { idiomaDataType } from '../types'
-// styled-components
+
 import { Navbar__wrapper, Navbar_buttons__wrapper, Linklist_wrapper, Menu_responsivo__wrapper } from "./navbar.styles";
 import { Idioma_submenu__wrapper } from "./idiomaSubMenu/idiomas.styles";
+
+
+interface idiomaDataType {
+    idioma: string,
+    imgPath: string,
+    imgAlt: string
+}
 
 const Navbar = function ({ idiomaData }: { idiomaData: idiomaDataType[] }): JSX.Element {
 
