@@ -18,7 +18,7 @@ export const IdiomaSubMenu = function ({ data, selected }: IdiomaSubmenuType) {
                         alt={dt.imgAlt}
                         width={16}
                         height={16}
-                        src={'/image/navbar-assets/flags/' + dt.idioma + '.png'}
+                        src={'/image/navbar-assets/flags/' + dt.imgPath + '.png'}
                     />
 
                     <p>{dt.idioma}</p>
