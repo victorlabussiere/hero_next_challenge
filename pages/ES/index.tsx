@@ -19,7 +19,7 @@ export default function Home() {
 
     fetch('/api/mockdb')
       .then(res => res.json())
-      .then(data => data.PT)
+      .then(data => data.ES)
       .then(res => {
         setNavProps(res)
         setSubMenu(res.submenu)
@@ -28,7 +28,7 @@ export default function Home() {
       .finally(() => {
         fetch('/api/cardsdata')
           .then(res => res.json())
-          .then(data => setCardList(data.PT))
+          .then(data => setCardList(data.ES))
           .catch(err => console.error('erro', err))
       })
 
