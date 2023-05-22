@@ -3,7 +3,7 @@ import { CardData } from '../../components/ui/Cards/types'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<CardData[]>) {
 
-  const mockData: CardData[] = [
+  const MOCK_DATA: CardData[] = [
     {
       imgPath: "icon-trilhas",
       imgAlt: "icon-trilhas",
@@ -28,5 +28,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     .then(res => res.json())
     .catch(err => (err.message).json())
 
-  return res.status(200).json(await data || mockData)
+  return await res.status(200).json(await data ? await data : MOCK_DATA)
 }
