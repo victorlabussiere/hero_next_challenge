@@ -10,7 +10,7 @@
 Mais informações sobre dependências podem ser acessadas no arquivo package.json
 
 O site está hospedado na plataforma vercel e pode ser acessado através do seguinte link:\
-<a> https://hero-ensinio-challenge.vercel.app/ </a>
+<a target="_blank"> https://hero-ensinio-challenge.vercel.app/ </a>
 
 ## Features
 - Toda a aplicação possui layouts responsivos às medidas de smartphons, tables, notebooks e telas ultra-wide.
