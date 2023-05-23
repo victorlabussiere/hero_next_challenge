@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { animationVertical, animationHorizontal } from "../../../../styles/globals";
+import { animationVertical, animationHorizontal, modalShadow } from "../../../../styles/globals";
 
 export const Modal__wrapper = styled.div`
     position: absolute;
@@ -12,9 +12,7 @@ export const Modal__wrapper = styled.div`
     max-width: 1200px;
     max-height: min-content;
 
-    top: 160%;
-    left: 0;
-    z-index: 99;
+    z-index: 10;
     gap: 2.5rem;
     border-radius: 8px;
 
@@ -23,10 +21,14 @@ export const Modal__wrapper = styled.div`
     color: #5F41D9;
     font-weight: 600;
 
+    ${modalShadow}
+    animation: ${animationVertical(1, -24)} ease-in-out .3s;
+    top: 200%;
+    left: 0;
+
     @media(max-width: 1220px) {
         position: absolute;
-        top: 90%;
-        z-index: 9;
+        top: 20%;
         
         flex-direction: column;
         justify-content: flex-start;
@@ -37,6 +39,15 @@ export const Modal__wrapper = styled.div`
         padding: 1rem;
 
         animation: ${animationVertical(1, -40)} ease-in-out .3s;
+    }
+
+    @media (max-width: 720px) {
+        position: absolute;
+        top: 120%;
+
+        gap: 1rem;
+        height: 60vh;
+        overflow-y: scroll ;
     }
 `
 
@@ -49,12 +60,16 @@ export const Modal__list = styled.ul`
     flex-wrap: wrap;
     flex: 1 1 100%;
     color: #000;
-    
+
     @media (max-width: 1220px) {
         color: #000;
         gap: .5rem;
         justify-content: flex-start;
     }
+
+    /* @media (max-width: 720px) {
+        position: absolute;
+    } */
 `
 
 export const Modal__card = styled.li`

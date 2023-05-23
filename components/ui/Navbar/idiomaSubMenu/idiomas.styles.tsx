@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { animationVertical } from "../../../../styles/globals";
+import { animationVertical, modalShadow } from "../../../../styles/globals";
 import Link from "next/link";
 
 export const Idioma_submenu__wrapper = styled.div`
@@ -32,6 +32,7 @@ export const Idioma_list__wrapper = styled.ul`
     flex-direction: column;
     justify-content: flex-start;
 
+    ${modalShadow}
     z-index: 9;
     animation: ${animationVertical(1, -8)} .3s ease-in-out;
     

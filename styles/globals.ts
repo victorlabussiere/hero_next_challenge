@@ -18,6 +18,10 @@ export const hoverSettings = `
             transition: .2s all ease-in-out;
         }
 `
+
+export const modalShadow = `
+        box-shadow: 0 0 32px #00000030;
+`
 export const responsiveHiddenDisplay = `
     display: none;
     visibility: hidden;

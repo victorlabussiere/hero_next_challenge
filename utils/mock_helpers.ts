@@ -77,6 +77,7 @@ export const MOCK_NAVBAR_TEXTS: NavbarDBTexts =
         carreiras: 'Carreiras',
         buttonText: { primary: 'Começar agora', secundary: 'Entrar' },
         modal: {
+            header: 'Soluções principais',
             title1: 'Crie uma Escola Online',
             title2: 'Comunidade e rede social',
             title3: 'Gamificação',
@@ -109,6 +110,7 @@ export const MOCK_NAVBAR_TEXTS: NavbarDBTexts =
         carreiras: 'Carees',
         buttonText: { primary: 'Start now', secundary: 'Log in' },
         modal: {
+            header: 'Our solutions',
             title1: 'Create an Online School',
             title2: 'Community and Social Network',
             title3: 'Gamification',
@@ -142,6 +144,7 @@ export const MOCK_NAVBAR_TEXTS: NavbarDBTexts =
         carreiras: 'Carreras',
         buttonText: { primary: 'Comenzar ahora', secundary: 'Entrar' },
         modal: {
+            header: 'Nuestras soluciones',
             title1: 'Crea una Escuela en Línea',
             title2: 'Comunidad y Red Social',
             title3: 'Gamificación',

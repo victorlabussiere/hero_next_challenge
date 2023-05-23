@@ -38,11 +38,3 @@ export const setSubMenuIcon = function (path: string): idiomaDataType {
     }
 
 }
-
-export const toggleSubMenu = function (elementClass: string): void {
-    /** @param {string} elementClass: string referente ao ID do elemento DOM que terá seu display alterado  */
-    const modal = document.getElementById(elementClass)
-    modal?.classList.toggle('hidden')
-
-    return void (0)
-}

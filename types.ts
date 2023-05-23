@@ -5,6 +5,7 @@ export type idiomaDataType = {
     imgAlt: string
 }
 export type NavbarModals = {
+    header: string,
     title1: string;
     title2: string;
     title3: string;

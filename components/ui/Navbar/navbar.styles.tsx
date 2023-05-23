@@ -79,17 +79,10 @@ export const Linklist_wrapper = styled.ul`
         align-items: center;
     }
 
-    .modalState.hidden {
-        display: none;
-        visibility: none;
+    .main_solucoes {
+        position: relative;
     }
 
-    .modalState {
-        position: absolute;
-        top: 200%;
-        left: 0;
-    }
-   
     li {
         display: flex;
         align-items: center;
@@ -143,7 +136,7 @@ export const Menu_responsivo__wrapper = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 6;
+    z-index: 3;
     opacity: 1;
     width: 100%;
     height: 100vh;
@@ -186,26 +179,23 @@ export const Menu_responsivo__wrapper = styled.div`
         }
     }
 
-    .responsiveListItems {
+    .solucoesResponsiveItem {
         display: flex;
         flex-direction: column;
+        gap: 1rem;
+        z-index: 1;
+        position: relative;
+    }
+
+    .responsiveListItems {
+        position: static;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
         list-style: none;   
         ${Inner_fontStyle}
-        width: 100%;
-        opacity: 1;
         
-        .stateManager {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-            z-index: 7;
-
-            i {
-                color: #99f3f5;
-            }
-        }
-
         li {
             width: 100%;
             display: flex;
@@ -219,14 +209,24 @@ export const Menu_responsivo__wrapper = styled.div`
                 padding-left: 1rem;
                 border-left: 2px solid #5f41d980;
             }
-        }
 
-        .modalState {
-            &.hidden{
-                display: none;
-                visibility: hidden;
+            .stateManager {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+                z-index: 7;                
+            
+            i {
+                color: #99f3f5;
             }
+
+            p {
+                ${Inner_fontStyle}
+            }
+
         }
+        }        
     }
     
     // hide display
@@ -240,6 +240,13 @@ export const Menu_responsivo__wrapper = styled.div`
 
         nav {
             position: relative;
+        }
+    }
+
+    @media (max-width: 720px) {
+        padding: .5rem 1.5rem;
+        header {
+            gap: .5rem;
         }
     }
 `

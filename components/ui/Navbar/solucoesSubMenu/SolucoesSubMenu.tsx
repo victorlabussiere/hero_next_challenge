@@ -9,7 +9,7 @@ export function SolucoesSubMenu({ modal }: { modal: NavbarModals }): JSX.Element
         <Modal__wrapper
             id="modalSolucoes"
         >
-            <h4>Soluções principais</h4>
+            <h4>{modal.header}</h4>
             <Modal__list>
                 <Modal__card className="card">
                     <Image
