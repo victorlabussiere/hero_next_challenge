@@ -54,7 +54,7 @@ npm run dev
 - O ***json-server*** será executado na porta 3001, assistindo ao arquivo *db.json*, que contém os dados simulados para o *challenge*.
 - O servidor de desenvolvimento da aplicação **Next** será executado na porta 3000
 
-Agora, você poderá acessar o aplicativo em seu navegador através do endereço <a>http://localhost:3000</a>
+Agora, você poderá acessar o aplicativo em seu navegador através do endereço <a target='_blank'>http://localhost:3000</a>
 
 <br>
 <br>
