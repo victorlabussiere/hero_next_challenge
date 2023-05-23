@@ -1,5 +1,11 @@
 {
   "name": "challenge",
+  "author": {
+    "name": "Victor Labussiere",
+    "email": "victor.labussiere95@gmail.com",
+    "url": "https://github.com/victorlabussiere"
+  },
+  "homepage": "https://hero-ensinio-challenge.vercel.app",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -18,10 +24,10 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "styled-components": "^6.0.0-rc.1",
-    "concurrently": "^8.0.1",
     "typescript": "5.0.4"
   },
   "devDependencies": {
+    "concurrently": "^8.0.1",
     "@types/styled-components": "^5.1.26",
     "@typescript-eslint/eslint-plugin": "^5.59.6",
     "@typescript-eslint/parser": "^5.59.6",
