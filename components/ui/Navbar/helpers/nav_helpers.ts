@@ -1,4 +1,4 @@
-import { idiomaDataType } from "../types"
+import { idiomaDataType } from "../types/navbar.types"
 
 export const setSubMenuIcon = function (path: string): idiomaDataType {
     /** @param {string} path: deve receber uma string com o path atual da aplicação /^[A-Z]{2}/*/

@@ -1,28 +1,32 @@
 import Image from "next/image";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 
-import { LayoutContext } from "../../Layout/Layout";
+import { LayoutContext } from "../../Layout/context/LayoutContext";
 import { IdiomaSubMenu } from "./idiomaSubMenu/IdiomaSubMenu";
 import { SolucoesSubMenu } from "./solucoesSubMenu/SolucoesSubMenu";
 import { PrimaryButton, SecundaryButton, TertiaryButton } from '../Buttons/Buttons'
 
-import { setSubMenuIcon } from '../../../utils/nav_helpers'
+import { setSubMenuIcon } from './helpers/nav_helpers'
+import { navbarRreducer, initialState, actionTypes } from "./helpers/NavbarReducer";
+
 import { Idioma_submenu__wrapper } from "./idiomaSubMenu/idiomas.styles";
 import { Navbar__wrapper, Navbar_buttons__wrapper, Linklist_wrapper, Menu_responsivo__wrapper } from "./navbar.styles";
 
+import { useReducer } from "react";
+
 const Navbar = function () {
-
-    const [listaSolucoes, setListaSolucoes] = useState(false)
-    const [modalIdiomas, setModalIdiomas] = useState(false)
-
-    const [respSolucoes, setRespSolucoes] = useState(false)
-    const [responsiveMenuDisplay, setResponsiveMenuDisplay] = useState(false)
-    const [respIdiomas, setRespIdiomas] = useState(false)
-
+    // context states
     const { idioma, selectIdioma } = useContext(LayoutContext)
-
     const icon = setSubMenuIcon(selectIdioma)
 
+    // modal states with reducer
+    const [state, dispatch] = useReducer(navbarRreducer, initialState)
+    const { listaSolucoes, modalIdiomas, respIdiomas, respSolucoes, responsiveMenuDisplay } = state
+
+    // reducer helper
+    const toggleModal = function (value: boolean, type: string) {
+        return dispatch({ type: type, payload: !value })
+    }
     return (
         <Navbar__wrapper>
             <Image
@@ -38,14 +42,16 @@ const Navbar = function () {
                 <li className="main_solucoes">
                     <div
                         className="stateManager"
-                        onMouseEnter={() => setListaSolucoes(true)}
-                        onClick={() => setListaSolucoes(!listaSolucoes)}
+                        onMouseEnter={() => toggleModal(listaSolucoes, actionTypes.SET_LISTA_SOLUCOES)}
+                        onClick={() => toggleModal(listaSolucoes, actionTypes.SET_LISTA_SOLUCOES)}
                     >
                         <p>{idioma ? idioma.solucoes : ''}</p>
                         <i className="material-symbols-outlined">arrow_drop_down</i>
                     </div>
                     {listaSolucoes
-                        ? <div onMouseLeave={() => setListaSolucoes(false)}>
+                        ? <div
+                            onMouseLeave={() => toggleModal(listaSolucoes, actionTypes.SET_LISTA_SOLUCOES)}
+                        >
                             <SolucoesSubMenu modal={idioma ? idioma.modal : {}} />
                         </div>
                         : ''
@@ -68,8 +74,8 @@ const Navbar = function () {
                 <Idioma_submenu__wrapper>
                     <div
                         className='stateManager'
-                        onMouseEnter={() => setModalIdiomas(true)}
-                        onClick={() => setModalIdiomas(!modalIdiomas)}
+                        onMouseEnter={() => toggleModal(modalIdiomas, actionTypes.SET_MODAL_IDIOMAS)}
+                        onClick={() => toggleModal(modalIdiomas, actionTypes.SET_MODAL_IDIOMAS)}
                     >
                         <Image
                             alt={icon.imgAlt}
@@ -83,7 +89,9 @@ const Navbar = function () {
 
                     {modalIdiomas
                         ? <div
-                            className="idiomasContainer" onMouseLeave={() => setModalIdiomas(false)} onClick={() => setModalIdiomas(!modalIdiomas)} >
+                            className="idiomasContainer"
+                            onMouseLeave={() => toggleModal(modalIdiomas, actionTypes.SET_MODAL_IDIOMAS)}
+                            onClick={() => toggleModal(modalIdiomas, actionTypes.SET_MODAL_IDIOMAS)} >
 
                             <IdiomaSubMenu />
                         </div>
@@ -94,9 +102,10 @@ const Navbar = function () {
 
             </Navbar_buttons__wrapper>
 
+
             <div
                 className="burgerMenu"
-                onClick={() => setResponsiveMenuDisplay(true)}>
+                onClick={() => toggleModal(responsiveMenuDisplay, actionTypes.SET_RESPONSIVE_MENU_DISPLAY)}>
                 <TertiaryButton
                     icon='material-symbols-outlined'
                     iconClass="menu"
@@ -105,71 +114,72 @@ const Navbar = function () {
             </div>
 
 
-            {responsiveMenuDisplay ?
-                <Menu_responsivo__wrapper>
-                    <header>
-                        <nav>
-                            <TertiaryButton icon='material-symbols-outlined' text={'Entrar'} iconClass="account_circle" />
-                            <Idioma_submenu__wrapper>
+            {
+                responsiveMenuDisplay ?
+                    <Menu_responsivo__wrapper>
+                        <header>
+                            <nav>
+                                <TertiaryButton icon='material-symbols-outlined' text={'Entrar'} iconClass="account_circle" />
+                                <Idioma_submenu__wrapper>
 
-                                <div className='stateManager' onClick={() => setRespIdiomas(!respIdiomas)} >
-                                    <Image
-                                        alt={icon.imgAlt}
-                                        width={16}
-                                        height={16}
-                                        src={'/image/navbar-assets/flags/' + icon.imgPath + '.png'}
-                                        className="responSiveMenuSettings" />
+                                    <div className='stateManager' onClick={() => toggleModal(respIdiomas, actionTypes.SET_RESP_IDIOMAS)} >
+                                        <Image
+                                            alt={icon.imgAlt}
+                                            width={16}
+                                            height={16}
+                                            src={'/image/navbar-assets/flags/' + icon.imgPath + '.png'}
+                                            className="responSiveMenuSettings" />
 
-                                    <TertiaryButton text={selectIdioma} icon='material-symbols-outlined' iconClass='arrow_drop_down' />
+                                        <TertiaryButton text={selectIdioma} icon='material-symbols-outlined' iconClass='arrow_drop_down' />
+                                    </div>
+
+                                    {respIdiomas
+                                        ? <div className="idiomasContainer" onClick={() => toggleModal(respIdiomas, actionTypes.SET_RESP_IDIOMAS)}>
+                                            <IdiomaSubMenu />
+                                        </div> : ''}
+
+                                </Idioma_submenu__wrapper >
+                            </nav>
+
+                            <span className="respVerticalRow"></span>
+
+                            <i className="iconClose" onClick={() => toggleModal(responsiveMenuDisplay, actionTypes.SET_RESPONSIVE_MENU_DISPLAY)}>
+                                <TertiaryButton text='' icon='material-symbols-outlined' iconClass={'close'} />
+                            </i>
+
+                        </header>
+
+                        <ul className="responsiveListItems">
+
+                            <li className="solucoesResponsiveItem"
+                                onClick={() => toggleModal(respSolucoes, actionTypes.SET_RESP_SOLUCOES)}
+                            >
+
+                                <div className="stateManager" >
+                                    <p onClick={() => toggleModal(respSolucoes, actionTypes.SET_RESP_SOLUCOES)}>
+                                        {idioma ? idioma.solucoes : ''}
+                                    </p>
+                                    <i className="material-symbols-outlined"
+                                        onClick={() => toggleModal(respSolucoes, actionTypes.SET_RESP_SOLUCOES)}>
+                                        arrow_drop_down
+                                    </i>
                                 </div>
 
-                                {respIdiomas
-                                    ? <div className="idiomasContainer" onClick={() => setRespIdiomas(!respIdiomas)}>
-                                        <IdiomaSubMenu />
-                                    </div> : ''}
+                                {respSolucoes
+                                    ? <SolucoesSubMenu modal={idioma ? idioma.modal : {}} />
+                                    : ''
+                                }
 
-                            </Idioma_submenu__wrapper >
-                        </nav>
+                            </li>
 
-                        <span className="respVerticalRow"></span>
+                            <li>{idioma ? idioma.precos : ''}</li>
+                            <li>{idioma ? idioma.carreiras : ''}</li>
+                            <li>{idioma ? idioma.contato : ''}</li>
+                        </ul>
 
-                        <i className="iconClose" onClick={() => setResponsiveMenuDisplay(false)}>
-                            <TertiaryButton text='' icon='material-symbols-outlined' iconClass={'close'} />
-                        </i>
-
-                    </header>
-
-                    <ul className="responsiveListItems">
-
-                        <li className="solucoesResponsiveItem"
-                            onClick={() => setRespSolucoes(!respSolucoes)}
-                        >
-
-                            <div className="stateManager" >
-                                <p onClick={() => setRespSolucoes(!respSolucoes)}>
-                                    {idioma ? idioma.solucoes : ''}
-                                </p>
-                                <i className="material-symbols-outlined"
-                                    onClick={() => setRespSolucoes(!respSolucoes)}>
-                                    arrow_drop_down
-                                </i>
-                            </div>
-
-                            {respSolucoes
-                                ? <SolucoesSubMenu modal={idioma ? idioma.modal : {}} />
-                                : ''
-                            }
-
-                        </li>
-
-                        <li>{idioma ? idioma.precos : ''}</li>
-                        <li>{idioma ? idioma.carreiras : ''}</li>
-                        <li>{idioma ? idioma.contato : ''}</li>
-                    </ul>
-
-                    <PrimaryButton text='Começar' />
-                </Menu_responsivo__wrapper>
-                : ''
+                        <PrimaryButton text='Começar' />
+                    </Menu_responsivo__wrapper>
+                    : ''
             }
 
         </Navbar__wrapper >

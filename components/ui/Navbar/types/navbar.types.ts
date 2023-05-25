@@ -1,4 +1,18 @@
-// Usado em Navbar.tsx
+export type Action =
+    | { type: 'SET_LISTA_SOLUCOES' | string; payload: boolean }
+    | { type: 'SET_MODAL_IDIOMAS' | string; payload: boolean }
+    | { type: 'SET_RESP_SOLUCOES' | string; payload: boolean }
+    | { type: 'SET_RESPONSIVE_MENU_DISPLAY' | string; payload: boolean }
+    | { type: 'SET_RESP_IDIOMAS' | string; payload: boolean };
+
+export type State = {
+    listaSolucoes: boolean;
+    modalIdiomas: boolean;
+    respSolucoes: boolean;
+    responsiveMenuDisplay: boolean;
+    respIdiomas: boolean;
+};
+
 export type idiomaDataType = {
     idioma: string,
     imgPath: string,
@@ -29,17 +43,4 @@ export type NavbarDBTexts = {
     PT: NavbarTexts,
     EN: NavbarTexts,
     ES: NavbarTexts
-}
-
-// Usado em CardList.tsx
-export type CardData = {
-    imgPath: string,
-    imgAlt: string,
-    cardTitle: string,
-    cardText: string
-}
-export type Idiomas_CardData = {
-    PT: CardData[],
-    EN: CardData[],
-    ES: CardData[]
 }

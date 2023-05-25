@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { NavbarDBTexts } from '../../types'
+import { NavbarDBTexts } from '../../components/ui/Navbar/types/navbar.types'
 import { MOCK_NAVBAR_TEXTS } from '../../utils/mock_helpers'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<NavbarDBTexts>) {

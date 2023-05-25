@@ -1,23 +1,12 @@
-import { Dispatch } from 'react'
-import { useEffect, useState, createContext, SetStateAction } from 'react'
-import PropTypes from 'prop-types'
+import { useEffect, useState } from 'react'
 
 import Navbar from '../ui/Navbar/Navbar'
-import { NavbarTexts, idiomaDataType } from '../../types'
+import { LayoutContext } from './context/LayoutContext'
 
 import GlobalStyle from '../../styles/globals'
+import { NavbarTexts, idiomaDataType } from '../ui/Navbar/types/navbar.types'
 
-type LayoutContextTypes = {
-    subMenu?: idiomaDataType[]
-    idioma?: NavbarTexts,
-    selectIdioma: string,
-    setSelectIdioma?: Dispatch<SetStateAction<string>>
-}
-
-export const LayoutContext = createContext<LayoutContextTypes>({ selectIdioma: 'PT' })
-
-interface LayoutProps { children: React.ReactNode }
-const Layout: React.FC<LayoutProps> = function ({ children }) {
+const Layout = function ({ children }: { children: React.ReactNode }) {
 
     const [subMenu, setSubMenu] = useState<idiomaDataType[]>()
     const [idioma, setIdioma] = useState<NavbarTexts>()
@@ -47,7 +36,6 @@ const Layout: React.FC<LayoutProps> = function ({ children }) {
             {children}
         </LayoutContext.Provider >
     )
-}
-Layout.propTypes = { children: PropTypes.node.isRequired }
 
+}
 export default Layout

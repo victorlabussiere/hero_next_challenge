@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { Idiomas_CardData } from '../../types'
+import { Idiomas_CardData } from '../../components/ui/Cards/types/cardList.types'
 import { MOCK_DATA } from '../../utils/mock_helpers'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Idiomas_CardData>) {

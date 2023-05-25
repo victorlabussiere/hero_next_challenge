@@ -1,14 +1,10 @@
 import { useContext } from 'react'
 import Image from 'next/image'
-import { useRouter } from 'next/router'
-import { LayoutContext } from '../../../Layout/Layout'
+import { LayoutContext } from '../../../Layout/context/LayoutContext'
 
 import { Idioma_list__wrapper, Idioma_link } from './idiomas.styles'
 
 export const IdiomaSubMenu = function () {
-
-    const route = useRouter()
-
     const { subMenu, setSelectIdioma, selectIdioma } = useContext(LayoutContext)
 
     return (
@@ -16,12 +12,12 @@ export const IdiomaSubMenu = function () {
 
             {subMenu ? subMenu.map((dt, index) =>
                 <Idioma_link
+                    href={`/${dt.idioma}`}
                     key={index + 1}
                     className={selectIdioma === dt.idioma ? 'selectedItem' : ''}
                     onClick={() => {
                         if (setSelectIdioma) {
                             setSelectIdioma(dt.idioma)
-                            return route.replace(`/${selectIdioma}`)
                         } else return ''
                     }}
                 >

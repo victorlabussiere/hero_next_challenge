@@ -81,7 +81,7 @@ export const Idioma_list__wrapper = styled.ul`
    
 `
 
-export const Idioma_link = styled.div`
+export const Idioma_link = styled(Link)`
     display: flex;
     gap: 1rem;
     padding: 1rem;

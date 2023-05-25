@@ -1,6 +1,6 @@
 import Image from "next/image"
 
-import { CardData } from "../../../types"
+import { CardData } from "./types/cardList.types"
 import { Card_container, Cardlist_wrapper } from "./cardsList.style"
 
 export const CardList = function ({ data }: { data: CardData[] }): JSX.Element {

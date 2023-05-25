@@ -1,5 +1,5 @@
-import { NavbarDBTexts } from "../types"
-import { Idiomas_CardData } from "../types"
+import { NavbarDBTexts } from "../components/ui/Navbar/types/navbar.types"
+import { Idiomas_CardData } from "../components/ui/Cards/types/cardList.types"
 
 export const MOCK_DATA: Idiomas_CardData = {
     /** Dados mockados para abastecimento dos cards da seção Detalhes */

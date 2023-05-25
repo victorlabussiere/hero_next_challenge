@@ -1,7 +1,7 @@
 import Image from "next/image"
 
 import { Modal__wrapper, Modal__list, Modal__card } from "./solucoes.styles"
-import { NavbarModals } from "../../../../types"
+import { NavbarModals } from "../types/navbar.types"
 
 export function SolucoesSubMenu({ modal }: { modal: NavbarModals }): JSX.Element {
 
