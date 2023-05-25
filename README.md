@@ -1,4 +1,4 @@
-# Challenge Ensinio
+# Internacionalização de Webpage com Next.js e Typescript (useContext e useReducer)
 
 ## Principais techs utilizadas no projeto:
 
@@ -9,9 +9,6 @@
   
 Mais informações sobre dependências podem ser acessadas no arquivo package.json
 
-O site está hospedado na plataforma vercel e pode ser acessado através do seguinte link:\
-https://hero-ensinio-challenge.vercel.app/
-
 ## Features
 - Toda a aplicação possui layouts responsivos às medidas de smartphons, tables, notebooks e telas ultra-wide.
 
@@ -21,9 +18,10 @@ https://hero-ensinio-challenge.vercel.app/
 
 - Os textos do navbar e da lista de cards (seção detalhes) são gerados dinâmicamente através de uma requisição simulada, utilizando ***json-server***.
 
-- Para o controle dinâmico dos idiomas dos textos, no navbar, foi utilizado o useEffect para observação de estados, recebendo informações direto da url através do hook ***useRouter***.
+- Para o controle dinâmico dos idiomas dos textos, no navbar, foi utilizado o useEffect para requisição de dados de uma api mockada.
 
-- Para a build do projeto que está hospedado na Vercel, eu optei por utilizar dados mockados, que são consultados através da api do **Next**.
+- Os dados passam por controle de estado com useContext, podendo ser acessados dinâmicamente por componentes filhos.
+
 </br>
 </br>
 
@@ -54,7 +52,7 @@ npm run dev
 - O ***json-server*** será executado na porta 3001, assistindo ao arquivo *db.json*, que contém os dados simulados para o *challenge*.
 - O servidor de desenvolvimento da aplicação **Next** será executado na porta 3000
 
-Agora, você poderá acessar o aplicativo em seu navegador através do endereço <a target='_blank'>http://localhost:3000</a>
+Agora, você poderá acessar o aplicativo em seu navegador através do endereço <a>http://localhost:3000</a>
 
 <br>
 <br>
@@ -65,7 +63,7 @@ Agora, você poderá acessar o aplicativo em seu navegador através do endereço
 
 #### **Soluções submenu**
 > **/api/cardsdata**
-> - Aqui é requisitado o copywriting dos cards que devem ser exibidos no submenu soluções, no navbar.
+> - Aqui é requisitado o copywriting dos cards que devem ser exibidos no submenu soluções, no navbar, nos idiomas: inglês, espanhol e pt-br.
 
 #### **Navbar copywriting**
 > **/api/mockdb**
@@ -84,9 +82,6 @@ Após a construção do projeto, você pode executá-lo em um ambiente de produ�
 npm start
 ```
 Esse comando iniciará o servidor **Next**, que servirá o aplicativo a partir da pasta .next. Além disso, o json-server será executado na porta 3001 para fornecer os dados simulados do arquivo db.json.
-
-*Como dito anteriormente, a aplicação hospedada na Vercel utiliza apenas dados mockados.*
-
 Acesse o projeto em seu navegador através do link http://localhost:3000
 
 ## Créditos
