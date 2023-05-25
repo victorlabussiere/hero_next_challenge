@@ -1,34 +1,27 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
-import { PrimaryButton, SecundaryButton, TertiaryButton } from '../Buttons/Buttons'
-import { SolucoesSubMenu } from "./solucoesSubMenu/SolucoesSubMenu";
+import { LayoutContext } from "../../Layout/Layout";
 import { IdiomaSubMenu } from "./idiomaSubMenu/IdiomaSubMenu";
+import { SolucoesSubMenu } from "./solucoesSubMenu/SolucoesSubMenu";
+import { PrimaryButton, SecundaryButton, TertiaryButton } from '../Buttons/Buttons'
 
-import { Navbar__wrapper, Navbar_buttons__wrapper, Linklist_wrapper, Menu_responsivo__wrapper } from "./navbar.styles";
+import { setSubMenuIcon } from '../../../utils/nav_helpers'
 import { Idioma_submenu__wrapper } from "./idiomaSubMenu/idiomas.styles";
+import { Navbar__wrapper, Navbar_buttons__wrapper, Linklist_wrapper, Menu_responsivo__wrapper } from "./navbar.styles";
 
-import { setSubMenuIcon } from "../../../utils/nav_helpers";
-import { NavbarTexts, idiomaDataType } from "../../../types";
+const Navbar = function () {
 
-const Navbar = function (
-    { idiomasSubmenu, texts, thisPath }: {
-        idiomasSubmenu: idiomaDataType[],
-        texts: NavbarTexts,
-        thisPath: string
-    }) {
-
-    // controlador de estados dos submenu idiomas
-    const iconIdioma: string = setSubMenuIcon(thisPath).idioma
-    const iconImgPath: string = setSubMenuIcon(thisPath).imgPath
-    const iconImgAlt: string = setSubMenuIcon(thisPath).imgAlt
+    const [listaSolucoes, setListaSolucoes] = useState(false)
     const [modalIdiomas, setModalIdiomas] = useState(false)
+
+    const [respSolucoes, setRespSolucoes] = useState(false)
+    const [responsiveMenuDisplay, setResponsiveMenuDisplay] = useState(false)
     const [respIdiomas, setRespIdiomas] = useState(false)
 
-    // controlador de estados do submenu soluções
-    const [responsiveMenuDisplay, setResponsiveMenuDisplay] = useState(false)
-    const [respSolucoes, setRespSolucoes] = useState(false)
-    const [listaSolucoes, setListaSolucoes] = useState(false)
+    const { idioma, selectIdioma } = useContext(LayoutContext)
+
+    const icon = setSubMenuIcon(selectIdioma)
 
     return (
         <Navbar__wrapper>
@@ -48,53 +41,54 @@ const Navbar = function (
                         onMouseEnter={() => setListaSolucoes(true)}
                         onClick={() => setListaSolucoes(!listaSolucoes)}
                     >
-                        <p>{texts.solucoes || ''}</p>
+                        <p>{idioma ? idioma.solucoes : ''}</p>
                         <i className="material-symbols-outlined">arrow_drop_down</i>
                     </div>
                     {listaSolucoes
                         ? <div onMouseLeave={() => setListaSolucoes(false)}>
-                            <SolucoesSubMenu modal={texts.modal || ''} />
+                            <SolucoesSubMenu modal={idioma ? idioma.modal : {}} />
                         </div>
                         : ''
                     }
                 </li>
 
-                <li>{texts.precos || ''}</li>
-                <li>{texts.academy || ''}</li>
-                <li>{texts.blog || ''}</li>
-                <li>{texts.contato || ''}</li>
+                <li>{idioma ? idioma.precos : ''}</li>
+                <li>{idioma ? idioma.academy : ''}</li>
+                <li>{idioma ? idioma.academy : ''}</li>
+                <li>{idioma ? idioma.blog : ''}</li>
             </Linklist_wrapper>
 
             <span className="verticalRow"></span>
 
             <Navbar_buttons__wrapper>
 
-                <TertiaryButton text={texts.buttonText.secundary || ''} icon='material-symbols-outlined' iconClass="account_circle" />
-                <SecundaryButton text={texts.buttonText.primary || ''} />
+                <TertiaryButton text={idioma ? idioma.buttonText.secundary : ''} icon='material-symbols-outlined' iconClass="account_circle" />
+                <SecundaryButton text={idioma ? idioma.buttonText.primary : ''} />
 
-                <Idioma_submenu__wrapper
-                >
+                <Idioma_submenu__wrapper>
                     <div
                         className='stateManager'
                         onMouseEnter={() => setModalIdiomas(true)}
                         onClick={() => setModalIdiomas(!modalIdiomas)}
                     >
                         <Image
-                            alt={iconImgAlt}
+                            alt={icon.imgAlt}
                             width={16}
                             height={16}
-                            src={'/image/navbar-assets/flags/' + iconImgPath + '.png'}
+                            src={'/image/navbar-assets/flags/' + icon.imgPath + '.png'}
                         />
-                        <TertiaryButton text={iconIdioma} icon='material-symbols-outlined' iconClass='arrow_drop_down' />
+
+                        <TertiaryButton text={selectIdioma} icon='material-symbols-outlined' iconClass='arrow_drop_down' />
                     </div>
 
                     {modalIdiomas
-                        ? <div className="idiomasContainer" onMouseLeave={() => setModalIdiomas(false)} onClick={() => setModalIdiomas(!modalIdiomas)} >
-                            <IdiomaSubMenu data={idiomasSubmenu} selected={iconIdioma} />
+                        ? <div
+                            className="idiomasContainer" onMouseLeave={() => setModalIdiomas(false)} onClick={() => setModalIdiomas(!modalIdiomas)} >
+
+                            <IdiomaSubMenu />
                         </div>
                         : ''
                     }
-
 
                 </Idioma_submenu__wrapper >
 
@@ -110,84 +104,73 @@ const Navbar = function (
                 />
             </div>
 
-            <Menu_responsivo__wrapper
-                className={!responsiveMenuDisplay ? 'hidden' : ''}
-                id='responsiveMenu'
-            >
-                <header>
 
-                    <nav>
-                        <TertiaryButton icon='material-symbols-outlined' text={'Entrar'} iconClass="account_circle" />
-                        <Idioma_submenu__wrapper
+            {responsiveMenuDisplay ?
+                <Menu_responsivo__wrapper>
+                    <header>
+                        <nav>
+                            <TertiaryButton icon='material-symbols-outlined' text={'Entrar'} iconClass="account_circle" />
+                            <Idioma_submenu__wrapper>
+
+                                <div className='stateManager' onClick={() => setRespIdiomas(!respIdiomas)} >
+                                    <Image
+                                        alt={icon.imgAlt}
+                                        width={16}
+                                        height={16}
+                                        src={'/image/navbar-assets/flags/' + icon.imgPath + '.png'}
+                                        className="responSiveMenuSettings" />
+
+                                    <TertiaryButton text={selectIdioma} icon='material-symbols-outlined' iconClass='arrow_drop_down' />
+                                </div>
+
+                                {respIdiomas
+                                    ? <div className="idiomasContainer" onClick={() => setRespIdiomas(!respIdiomas)}>
+                                        <IdiomaSubMenu />
+                                    </div> : ''}
+
+                            </Idioma_submenu__wrapper >
+                        </nav>
+
+                        <span className="respVerticalRow"></span>
+
+                        <i className="iconClose" onClick={() => setResponsiveMenuDisplay(false)}>
+                            <TertiaryButton text='' icon='material-symbols-outlined' iconClass={'close'} />
+                        </i>
+
+                    </header>
+
+                    <ul className="responsiveListItems">
+
+                        <li className="solucoesResponsiveItem"
+                            onClick={() => setRespSolucoes(!respSolucoes)}
                         >
-                            <div
-                                className='stateManager'
-                                onClick={() => setRespIdiomas(true)}
-                            >
-                                <Image
-                                    alt={iconImgAlt}
-                                    width={16}
-                                    height={16}
-                                    src={'/image/navbar-assets/flags/' + iconImgPath + '.png'}
-                                    className="responSiveMenuSettings"
-                                />
-                                <TertiaryButton text={iconIdioma} icon='material-symbols-outlined' iconClass='arrow_drop_down' />
+
+                            <div className="stateManager" >
+                                <p onClick={() => setRespSolucoes(!respSolucoes)}>
+                                    {idioma ? idioma.solucoes : ''}
+                                </p>
+                                <i className="material-symbols-outlined"
+                                    onClick={() => setRespSolucoes(!respSolucoes)}>
+                                    arrow_drop_down
+                                </i>
                             </div>
 
-                            {respIdiomas ? <div className="idiomasContainer" onClick={() => setRespIdiomas(!respIdiomas)}>
-                                <IdiomaSubMenu data={idiomasSubmenu} selected={iconIdioma} />
-                            </div>
+                            {respSolucoes
+                                ? <SolucoesSubMenu modal={idioma ? idioma.modal : {}} />
                                 : ''
                             }
 
-                        </Idioma_submenu__wrapper >
-                    </nav>
+                        </li>
 
-                    <span className="respVerticalRow"></span>
+                        <li>{idioma ? idioma.precos : ''}</li>
+                        <li>{idioma ? idioma.carreiras : ''}</li>
+                        <li>{idioma ? idioma.contato : ''}</li>
+                    </ul>
 
-                    <i
-                        className="iconClose"
-                        onClick={() => setResponsiveMenuDisplay(false)}>
-                        <TertiaryButton
-                            text=''
-                            icon='material-symbols-outlined'
-                            iconClass={'close'}
-                        />
-                    </i>
-
-                </header>
-
-                <ul className="responsiveListItems">
-
-                    <li className="solucoesResponsiveItem"
-                        onClick={() => setRespSolucoes(!respSolucoes)}
-                    >
-
-                        <div className="stateManager" >
-                            <p onClick={() => setRespSolucoes(!respSolucoes)}>
-                                {texts.solucoes || ''}
-                            </p>
-                            <i className="material-symbols-outlined"
-                                onClick={() => setRespSolucoes(!respSolucoes)}>
-                                arrow_drop_down
-                            </i>
-                        </div>
-
-                        {respSolucoes
-                            ? <SolucoesSubMenu modal={texts.modal} />
-                            : ''
-                        }
-
-                    </li>
-
-                    <li>{texts.precos || ''}</li>
-                    <li>{texts.carreiras || ''}</li>
-                    <li>{texts.contato || ''}</li>
-                </ul>
-
-                <PrimaryButton text='Começar' />
-            </Menu_responsivo__wrapper>
-
+                    <PrimaryButton text='Começar' />
+                </Menu_responsivo__wrapper>
+                : ''
+            }
 
         </Navbar__wrapper >
     )

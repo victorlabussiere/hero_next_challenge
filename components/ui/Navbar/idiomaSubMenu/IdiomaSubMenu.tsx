@@ -1,18 +1,29 @@
+import { useContext } from 'react'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
+import { LayoutContext } from '../../../Layout/Layout'
+
 import { Idioma_list__wrapper, Idioma_link } from './idiomas.styles'
-import { IdiomaSubmenuType } from '../../../../types'
 
+export const IdiomaSubMenu = function () {
 
-export const IdiomaSubMenu = function ({ data, selected }: IdiomaSubmenuType) {
+    const route = useRouter()
+
+    const { subMenu, setSelectIdioma, selectIdioma } = useContext(LayoutContext)
 
     return (
         <Idioma_list__wrapper>
 
-            {data.map((dt, index) =>
+            {subMenu ? subMenu.map((dt, index) =>
                 <Idioma_link
-                    href={`/${dt.idioma}`}
                     key={index + 1}
-                    className={selected === dt.idioma ? 'selectedItem' : ''}
+                    className={selectIdioma === dt.idioma ? 'selectedItem' : ''}
+                    onClick={() => {
+                        if (setSelectIdioma) {
+                            setSelectIdioma(dt.idioma)
+                            return route.replace(`/${selectIdioma}`)
+                        } else return ''
+                    }}
                 >
                     <Image
                         alt={dt.imgAlt}
@@ -23,13 +34,13 @@ export const IdiomaSubMenu = function ({ data, selected }: IdiomaSubmenuType) {
 
                     <p>{dt.idioma}</p>
 
-                    <i className={selected === dt.idioma
+                    <i className={selectIdioma === dt.idioma
                         ? "material-symbols-outlined check"
                         : 'hideCheck'
                     }> done </i>
 
                 </ Idioma_link>
-            )}
-        </Idioma_list__wrapper>
+            ) : ''}
+        </Idioma_list__wrapper >
     )
 }
